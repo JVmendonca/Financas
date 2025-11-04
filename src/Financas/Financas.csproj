@@ -11,10 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Financas.Infraestrutura\Financas.Infraestrutura.csproj" />
     <ProjectReference Include="..\Financas.Application\Financas.Application.csproj" />
     <ProjectReference Include="..\Financas.Communication\Financas.Communication.csproj" />
     <ProjectReference Include="..\Financas.Exeption\Financas.Exeption.csproj" />
+    <ProjectReference Include="..\Financas.Infrasctructure\Financas.Infrasctructure.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36518.9 d17.14
+VisualStudioVersion = 17.14.36518.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Financas.Domain", "src\Fina
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Financas.Exeption", "src\Financas.Exeption\Financas.Exeption.csproj", "{001B9372-5D16-4C9B-8437-D41A981BE8B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Financas.Infraestrutura", "Financas.Infraestrutura\Financas.Infraestrutura.csproj", "{6059CDCC-829C-4798-A1AF-24B76FA2AB95}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Financas.Infrasctructure", "src\Financas.Infrasctructure\Financas.Infrasctructure.csproj", "{0D5003F1-F1D4-4903-9B88-03EFD58048F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,10 +45,10 @@ Global
 		{001B9372-5D16-4C9B-8437-D41A981BE8B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{001B9372-5D16-4C9B-8437-D41A981BE8B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{001B9372-5D16-4C9B-8437-D41A981BE8B7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6059CDCC-829C-4798-A1AF-24B76FA2AB95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6059CDCC-829C-4798-A1AF-24B76FA2AB95}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6059CDCC-829C-4798-A1AF-24B76FA2AB95}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6059CDCC-829C-4798-A1AF-24B76FA2AB95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D5003F1-F1D4-4903-9B88-03EFD58048F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D5003F1-F1D4-4903-9B88-03EFD58048F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D5003F1-F1D4-4903-9B88-03EFD58048F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D5003F1-F1D4-4903-9B88-03EFD58048F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,7 +59,7 @@ Global
 		{4C2BE04F-52CA-41DB-9168-2660D64E0262} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{A50B4803-44D0-412E-9129-0D5305851400} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{001B9372-5D16-4C9B-8437-D41A981BE8B7} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
-		{6059CDCC-829C-4798-A1AF-24B76FA2AB95} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{0D5003F1-F1D4-4903-9B88-03EFD58048F2} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {240C6297-2DD3-4687-B8BC-9C0E8DE1C9FB}
