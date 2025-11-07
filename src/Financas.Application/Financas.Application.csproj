@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="12.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Financas.Communication\Financas.Communication.csproj" />
     <ProjectReference Include="..\Financas.Domain\Financas.Domain.csproj" />
     <ProjectReference Include="..\Financas.Exeption\Financas.Exeption.csproj" />

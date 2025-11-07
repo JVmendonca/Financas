@@ -11,34 +11,18 @@ public class RegisterDispesasUseCase
 
         return new ResponseDispesaJson();
     }
-
+        
     private void Validate(RequestDispesaJson request)
     {
-        var tituloIsEmpty = string.IsNullOrWhiteSpace(request.Titulo);
-        if (tituloIsEmpty)
+        var validator = new RegisterExpensesValidator();    
+
+        var result = validator.Validate(request);
+
+        if (result.IsValid == false)
         {
-            throw new ArgumentException("O título da dispesa é obrigatório.");
+            var errors = result.Errors.Select(f => f.ErrorMessage).ToList();
+            throw new ArgumentException();
         }
-
-        if (request.Valor <= 0)
-        {
-            throw new ArgumentException("O valor da dispesa deve ser maior que zero.");
-        }
-
-        var dataFutura = DateTime.Compare(request.Data, DateTime.UtcNow);
-        if (dataFutura > 0)
-        {
-            throw new ArgumentException("A data da dispesa não pode ser futura.");
-
-        }
-
-        var PagamentoValido = Enum.IsDefined(typeof(PaymentType), request.Pagamento);
-        if (PagamentoValido == false)
-        {
-            throw new ArgumentException("O tipo de pagamento da dispesa é inválido.");
-        }
-
-
     }
 
 }
