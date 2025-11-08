@@ -1,6 +1,5 @@
 ﻿using Financas.Application.UseCases.Dispesas.Register;
 using Financas.Communication.Request;
-using Financas.Communication.Responses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Financas.Controllers;
@@ -13,25 +12,10 @@ public class DispesasController : ControllerBase
 
     public IActionResult Register([FromBody] RequestDispesaJson request)
     {
-        try
-        {
-            var useCase = new RegisterDispesasUseCase();
+        var useCase = new RegisterDispesasUseCase();
 
-            var response = useCase.Execute(request);
-            
-            return Created(string.Empty, response);
-        }
-        catch (ArgumentException ex)
-        {
-            var errorResponse = new ResponseErrorJson(ex.Message);
+        var response = useCase.Execute(request);
 
-            return BadRequest(errorResponse);
-        }
-        catch
-        {
-            var errorResponse = new ResponseErrorJson("erro desconhecido");
-
-            return StatusCode(500);
-        }
+        return Created(string.Empty, response);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Financas.Communication.Enuns;
 using Financas.Communication.Request;
 using Financas.Communication.Responses;
+using Financas.Exeption.ExeptionBase;
 
 namespace Financas.Application.UseCases.Dispesas.Register;
 public class RegisterDispesasUseCase
@@ -20,9 +21,9 @@ public class RegisterDispesasUseCase
 
         if (result.IsValid == false)
         {
-            var errors = result.Errors.Select(f => f.ErrorMessage).ToList();
-            throw new ArgumentException();
+            var errorMessages = result.Errors.Select(f => f.ErrorMessage).ToList();
+
+            throw new ErrorOnValidationException(errorMessages);
         }
     }
-
 }
