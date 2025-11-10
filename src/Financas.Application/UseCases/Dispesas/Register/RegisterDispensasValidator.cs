@@ -3,10 +3,10 @@ using FluentValidation;
 using Financas.Exeption;
 
 namespace Financas.Application.UseCases.Dispesas.Register;
-public class RegisterExpensesValidator : AbstractValidator<RequestDispesaJson>
+public class RegisterDispensasValidator : AbstractValidator<RequestDispesaJson>
 {
 
-    public RegisterExpensesValidator()
+    public RegisterDispensasValidator()
     {
         RuleFor(Dispesas => Dispesas.Titulo).NotEmpty().WithMessage(ResourceErrorMassages.TITULO_OBRIGATORIO);
         RuleFor(Dispesas => Dispesas.Valor).GreaterThan(0).WithMessage(ResourceErrorMassages.VALOR_DEVE_SER_MAIOR_ZERO);

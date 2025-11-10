@@ -15,7 +15,7 @@ public class RegisterDispesasUseCase
         
     private void Validate(RequestDispesaJson request)
     {
-        var validator = new RegisterExpensesValidator();    
+        var validator = new RegisterDispensasValidator();    
 
         var result = validator.Validate(request);
 
