@@ -1,4 +1,5 @@
 ﻿using Financas.Communication.Responses;
+using Financas.Exeption;
 using Financas.Exeption.ExeptionBase;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -21,10 +22,11 @@ public class ExceptionFilter : IExceptionFilter
 
     private void HandleProjectExeption(ExceptionContext context)
     {
-        if(context.Exception is ErrorOnValidationException);
+        if(context.Exception is ErrorOnValidationException)
         {
             var ex = context.Exception as ErrorOnValidationException;
 
+           
             var errorResponse = new ResponseErrorJson(ex.Errors);
 
             context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
@@ -34,7 +36,7 @@ public class ExceptionFilter : IExceptionFilter
 
     private void ThrowUnkowError(ExceptionContext context)
     {
-        var errorResponse = new ResponseErrorJson("erro desconhecido");
+        var errorResponse = new ResponseErrorJson(ResourceErrorMassages.ERRO_DESCONHECIDO);
 
         context.HttpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
         context.Result = new ObjectResult(errorResponse);
