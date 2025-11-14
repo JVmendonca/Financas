@@ -20,6 +20,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\Financas.Application\Financas.Application.csproj" />
     <ProjectReference Include="..\..\src\Financas.Communication\Financas.Communication.csproj" />
+    <ProjectReference Include="..\..\src\Financas.Exeption\Financas.Exeption.csproj" />
     <ProjectReference Include="..\CommonTestUtilities\CommonTestUtilities.csproj" />
   </ItemGroup>
 
