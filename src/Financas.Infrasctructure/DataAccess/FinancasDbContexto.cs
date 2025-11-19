@@ -2,7 +2,7 @@
 using Financas.Domain.Entidades;
 
 namespace Financas.Infrasctructure.DataAccess;
-public class FinancasDbContexto : DbContext
+internal class FinancasDbContexto : DbContext
 {
     public DbSet<Dispesa> Dispesas { get; set; }
 
@@ -10,7 +10,7 @@ public class FinancasDbContexto : DbContext
     {
         var connectionString = "Server=localhost;database=financasdb;Uid=root;pwd=24083066Jj*;";
 
-        var version = new Version(8, 0, 44));
+        var version = new Version(8, 0, 44);
         var serverVersion = new MySqlServerVersion(version);
 
         optionsBuilder.UseMySql(connectionString,serverVersion );
