@@ -4,16 +4,8 @@ using Financas.Domain.Entidades;
 namespace Financas.Infrasctructure.DataAccess;
 internal class FinancasDbContexto : DbContext
 {
+    public FinancasDbContexto(DbContextOptions options) : base(options) { }
     public DbSet<Dispesa> Dispesas { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        var connectionString = "Server=localhost;database=financasdb;Uid=root;pwd=24083066Jj*;";
-
-        var version = new Version(8, 0, 44);
-        var serverVersion = new MySqlServerVersion(version);
-
-        optionsBuilder.UseMySql(connectionString,serverVersion );
-    }
 }
  

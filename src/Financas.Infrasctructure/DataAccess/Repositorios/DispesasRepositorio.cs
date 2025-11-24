@@ -4,12 +4,13 @@ using Financas.Domain.Repositorios.Dispesas;
 namespace Financas.Infrasctructure.DataAccess.Repositorios;
 internal class DispesasRepositorio : IDispesasRepositorio
 {
-    public void add(Dispesa dispesa)
+    private readonly FinancasDbContexto _dbContext;
+    public DispesasRepositorio(FinancasDbContexto dbContext)
     {
-        var dbcontext = new FinancasDbContexto();
-
-        dbcontext.Dispesas.Add(dispesa);
-
-        dbcontext.SaveChanges();
+        _dbContext = dbContext;
+    }
+    public async Task add(Dispesa dispesa)
+    {
+        _dbContext.Dispesas.Add(dispesa);
     }
 }

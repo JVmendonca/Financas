@@ -3,6 +3,6 @@
 namespace Financas.Domain.Repositorios.Dispesas;
 public interface IDispesasRepositorio
 {
-   void add(Dispesa dispesa);
+   Task add(Dispesa dispesa);
 
 }

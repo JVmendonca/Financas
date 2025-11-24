@@ -2,12 +2,21 @@
 using Financas.Communication.Request;
 using Financas.Communication.Responses;
 using Financas.Domain.Entidades;
+using Financas.Domain.Repositorios;
+using Financas.Domain.Repositorios.Dispesas;
 using Financas.Exeption.ExeptionBase;
 
 namespace Financas.Application.UseCases.Dispesas.Register;
-public class RegisterDispesasUseCase
+public class RegisterDispesasUseCase : IRegisterDispensaUseCase
 {
-    public ResponseDispesaJson Execute(RequestDispesaJson request)
+    private readonly IDispesasRepositorio _repositorio;
+    private readonly IUnitOfWork _unitOfWork;
+    public RegisterDispesasUseCase(IDispesasRepositorio repositorio, IUnitOfWork unitOfWork)
+    {
+        _repositorio = repositorio;
+        _unitOfWork = unitOfWork;
+    }
+    public async Task <ResponseDispesaJson> Execute(RequestDispesaJson request)
     {
         Validate(request);
 
@@ -19,6 +28,10 @@ public class RegisterDispesasUseCase
             Valor = request.Valor,
             Pagamento = (Domain.Enuns.PaymentType)request.Pagamento
         };
+
+        await _repositorio.add(entity);
+
+        await _unitOfWork.Commit();
 
         return new ResponseDispesaJson();
     }

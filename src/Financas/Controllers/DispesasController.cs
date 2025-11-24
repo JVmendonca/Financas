@@ -9,12 +9,12 @@ namespace Financas.Controllers;
 public class DispesasController : ControllerBase
 {
     [HttpPost]
-
-    public IActionResult Register([FromBody] RequestDispesaJson request)
+    public async Task<IActionResult> Register(
+        [FromServices] IRegisterDispensaUseCase useCase,
+        [FromBody] RequestDispesaJson request)  
     {
-        var useCase = new RegisterDispesasUseCase();
 
-        var response = useCase.Execute(request);
+        var response = await useCase.Execute(request);
 
         return Created(string.Empty, response);
     }
