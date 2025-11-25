@@ -1,4 +1,5 @@
-﻿using Financas.Communication.Enuns;
+﻿using AutoMapper;
+using Financas.Communication.Enuns;
 using Financas.Communication.Request;
 using Financas.Communication.Responses;
 using Financas.Domain.Entidades;
@@ -11,29 +12,24 @@ public class RegisterDispesasUseCase : IRegisterDispensaUseCase
 {
     private readonly IDispesasRepositorio _repositorio;
     private readonly IUnitOfWork _unitOfWork;
-    public RegisterDispesasUseCase(IDispesasRepositorio repositorio, IUnitOfWork unitOfWork)
+    private readonly IMapper _mapper;
+    public RegisterDispesasUseCase(IDispesasRepositorio repositorio, IUnitOfWork unitOfWork, IMapper mapper)
     {
         _repositorio = repositorio;
         _unitOfWork = unitOfWork;
+        _mapper = mapper;
     }
     public async Task <ResponseDispesaJson> Execute(RequestDispesaJson request)
     {
         Validate(request);
 
-        var entity = new Dispesa
-        {
-            Titulo = request.Titulo,
-            Descricao = request.Descricao,
-            Data = request.Data,
-            Valor = request.Valor,
-            Pagamento = (Domain.Enuns.PaymentType)request.Pagamento
-        };
+        var entity = _mapper.Map<Dispesa>(request);
 
         await _repositorio.add(entity);
 
         await _unitOfWork.Commit();
 
-        return new ResponseDispesaJson();
+        return _mapper.Map<ResponseDispesaJson>(entity);
     }
         
     private void Validate(RequestDispesaJson request)

@@ -1,10 +1,23 @@
-﻿using Financas.Application.UseCases.Dispesas.Register;
+﻿using Financas.Application.AutoMapper;
+using Financas.Application.UseCases.Dispesas.Register;
 using Microsoft.Extensions.DependencyInjection;
+
 
 namespace Financas.Application;
 public static class DependecyInjectionExtension
 {
     public static void AddApplicationDependecies(this IServiceCollection services)
+    {
+        AddAutoMapper(services);
+        AddUseCases(services);
+    }
+
+    private static void AddAutoMapper(IServiceCollection services)
+    {
+        services.AddAutoMapper(typeof(AutoMapping));
+    }
+
+    private static void AddUseCases(IServiceCollection services)
     {
         services.AddScoped<IRegisterDispensaUseCase, RegisterDispesasUseCase>();
     }
