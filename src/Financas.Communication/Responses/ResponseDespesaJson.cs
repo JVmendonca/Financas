@@ -1,5 +1,5 @@
 ﻿namespace Financas.Communication.Responses;
-public class ResponseDispesaJson
+public class ResponseDespesaJson
 {
     public string Titulo { get; set; } = string.Empty;
 }

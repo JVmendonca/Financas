@@ -17,6 +17,7 @@ public class AutoMapping : Profile
     }
     private void EntityToRequest()
     {
-        CreateMap<Dispesa, ResponseDispesaJson>();
+        CreateMap<Dispesa, ResponseDespesaJson>();
+        CreateMap<Dispesa, ResponseShortExpenseJson>();
     }
 }

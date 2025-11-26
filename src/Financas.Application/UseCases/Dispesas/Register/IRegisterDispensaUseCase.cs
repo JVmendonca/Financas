@@ -4,5 +4,5 @@ using Financas.Communication.Responses;
 namespace Financas.Application.UseCases.Dispesas.Register;
 public interface IRegisterDispensaUseCase
 {
-    Task <ResponseDispesaJson> Execute(RequestDispesaJson request);
+    Task <ResponseDespesaJson> Execute(RequestDispesaJson request);
 }

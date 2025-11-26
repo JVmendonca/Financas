@@ -1,4 +1,5 @@
 ﻿using Financas.Application.AutoMapper;
+using Financas.Application.UseCases.Dispesas.GetAll;
 using Financas.Application.UseCases.Dispesas.Register;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -20,5 +21,6 @@ public static class DependecyInjectionExtension
     private static void AddUseCases(IServiceCollection services)
     {
         services.AddScoped<IRegisterDispensaUseCase, RegisterDispesasUseCase>();
+        services.AddScoped<IGetAllExpensesUseCase, GetAllExpensesUseCase>();
     }
 }

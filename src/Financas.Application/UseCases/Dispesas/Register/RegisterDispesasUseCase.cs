@@ -10,16 +10,16 @@ using Financas.Exeption.ExeptionBase;
 namespace Financas.Application.UseCases.Dispesas.Register;
 public class RegisterDispesasUseCase : IRegisterDispensaUseCase
 {
-    private readonly IDispesasRepositorio _repositorio;
+    private readonly IDespesasRepositorio _repositorio;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
-    public RegisterDispesasUseCase(IDispesasRepositorio repositorio, IUnitOfWork unitOfWork, IMapper mapper)
+    public RegisterDispesasUseCase(IDespesasRepositorio repositorio, IUnitOfWork unitOfWork, IMapper mapper)
     {
         _repositorio = repositorio;
         _unitOfWork = unitOfWork;
         _mapper = mapper;
     }
-    public async Task <ResponseDispesaJson> Execute(RequestDispesaJson request)
+    public async Task <ResponseDespesaJson> Execute(RequestDispesaJson request)
     {
         Validate(request);
 
@@ -29,7 +29,7 @@ public class RegisterDispesasUseCase : IRegisterDispensaUseCase
 
         await _unitOfWork.Commit();
 
-        return _mapper.Map<ResponseDispesaJson>(entity);
+        return _mapper.Map<ResponseDespesaJson>(entity);
     }
         
     private void Validate(RequestDispesaJson request)
