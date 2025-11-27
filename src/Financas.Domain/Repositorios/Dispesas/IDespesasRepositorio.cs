@@ -5,5 +5,6 @@ public interface IDespesasRepositorio
 {
    Task add(Dispesa dispesa);
    Task<List<Dispesa>> GetAll();
+   Task<Dispesa?> GetById(long id);
 
 }
