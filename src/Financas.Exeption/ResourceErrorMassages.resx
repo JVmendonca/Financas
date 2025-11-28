@@ -132,4 +132,7 @@
   <data name="ERRO_DESCONHECIDO" xml:space="preserve">
     <value>erro desconhecido</value>
   </data>
+  <data name="DESPESA_NAO_ENCONTRADA" xml:space="preserve">
+    <value>Despesa Não Encontrada</value>
+  </data>
 </root>

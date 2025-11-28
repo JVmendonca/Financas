@@ -3,6 +3,7 @@ using Financas.Exeption;
 using Financas.Exeption.ExeptionBase;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.FileProviders;
 
 namespace Financas.filters;
 
@@ -22,12 +23,24 @@ public class ExceptionFilter : IExceptionFilter
 
     private void HandleProjectExeption(ExceptionContext context)
     {
-        if(context.Exception is ErrorOnValidationException)
+        if (context.Exception is ErrorOnValidationException errorOnValidationException)
         {
-            var ex = context.Exception as ErrorOnValidationException;
+            var errorResponse = new ResponseErrorJson(errorOnValidationException.Errors);
 
-           
-            var errorResponse = new ResponseErrorJson(ex.Errors);
+            context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
+            context.Result = new BadRequestObjectResult(errorResponse);
+        }
+        else if (context.Exception is NotFoundExeption notFoundExeption)
+        {
+            var errorResponse = new ResponseErrorJson(notFoundExeption.Message);
+
+            context.HttpContext.Response.StatusCode = StatusCodes.Status404NotFound;
+            context.Result = new NotFoundObjectResult(errorResponse);
+        }
+
+        else
+        {
+            var errorResponse = new ResponseErrorJson(context.Exception.Message);
 
             context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
             context.Result = new BadRequestObjectResult(errorResponse);

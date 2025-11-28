@@ -70,6 +70,15 @@ namespace Financas.Exeption {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Despesa Não Encontrada.
+        /// </summary>
+        public static string DESPESA_NAO_ENCONTRADA {
+            get {
+                return ResourceManager.GetString("DESPESA_NAO_ENCONTRADA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to erro desconhecido.
         /// </summary>
         public static string ERRO_DESCONHECIDO {

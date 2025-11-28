@@ -1,4 +1,8 @@
 ﻿namespace Financas.Exeption.ExeptionBase;
-public class FinancasExeption : System.Exception
+public abstract class FinancasExeption : System.Exception
 {
+    protected FinancasExeption(string message) : base(message)
+    {
+        
+    }
 }

@@ -22,7 +22,7 @@ namespace Financas.Exeption {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ResourceErrorMassages_en_US {
+    public class ResourceErrorMassages_en_US {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Financas.Exeption {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Financas.Exeption.ResourceErrorMassages-en-US", typeof(ResourceErrorMassages_en_US).Assembly);
@@ -51,7 +51,7 @@ namespace Financas.Exeption {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,16 +63,25 @@ namespace Financas.Exeption {
         /// <summary>
         ///   Looks up a localized string similar to Cannot Be a Future Date.
         /// </summary>
-        internal static string DATA_NAO_DEVE_SER_FUTURA {
+        public static string DATA_NAO_DEVE_SER_FUTURA {
             get {
                 return ResourceManager.GetString("DATA_NAO_DEVE_SER_FUTURA", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Despesa Não Encontrada.
+        /// </summary>
+        public static string DESPESA_NAO_ENCONTRADA {
+            get {
+                return ResourceManager.GetString("DESPESA_NAO_ENCONTRADA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unknown Error.
         /// </summary>
-        internal static string ERRO_DESCONHECIDO {
+        public static string ERRO_DESCONHECIDO {
             get {
                 return ResourceManager.GetString("ERRO_DESCONHECIDO", resourceCulture);
             }
@@ -81,7 +90,7 @@ namespace Financas.Exeption {
         /// <summary>
         ///   Looks up a localized string similar to Invalid Payment Type.
         /// </summary>
-        internal static string TIPO_PAGAMENTO_INVALIDO {
+        public static string TIPO_PAGAMENTO_INVALIDO {
             get {
                 return ResourceManager.GetString("TIPO_PAGAMENTO_INVALIDO", resourceCulture);
             }
@@ -90,7 +99,7 @@ namespace Financas.Exeption {
         /// <summary>
         ///   Looks up a localized string similar to Title Is Required.
         /// </summary>
-        internal static string TITULO_OBRIGATORIO {
+        public static string TITULO_OBRIGATORIO {
             get {
                 return ResourceManager.GetString("TITULO_OBRIGATORIO", resourceCulture);
             }
@@ -99,7 +108,7 @@ namespace Financas.Exeption {
         /// <summary>
         ///   Looks up a localized string similar to Value Must Be Greater Than Zero.
         /// </summary>
-        internal static string VALOR_DEVE_SER_MAIOR_ZERO {
+        public static string VALOR_DEVE_SER_MAIOR_ZERO {
             get {
                 return ResourceManager.GetString("VALOR_DEVE_SER_MAIOR_ZERO", resourceCulture);
             }

@@ -120,6 +120,9 @@
   <data name="DATA_NAO_DEVE_SER_FUTURA" xml:space="preserve">
     <value>Não Pode Ser Uma Data Futura</value>
   </data>
+  <data name="DESPESA_NAO_ENCONTRADA" xml:space="preserve">
+    <value>Despesa Não Encontrada</value>
+  </data>
   <data name="ERRO_DESCONHECIDO" xml:space="preserve">
     <value>erro desconhecido</value>
   </data>
