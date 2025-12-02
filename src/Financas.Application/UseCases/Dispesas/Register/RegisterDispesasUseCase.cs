@@ -4,16 +4,16 @@ using Financas.Communication.Request;
 using Financas.Communication.Responses;
 using Financas.Domain.Entidades;
 using Financas.Domain.Repositorios;
-using Financas.Domain.Repositorios.Dispesas;
+using Financas.Domain.Repositorios.Despesas;
 using Financas.Exeption.ExeptionBase;
 
 namespace Financas.Application.UseCases.Dispesas.Register;
 public class RegisterDispesasUseCase : IRegisterDispensaUseCase
 {
-    private readonly IDespesasRepositorio _repositorio;
+    private readonly IDespesasWriteOnlyRepositorio _repositorio;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
-    public RegisterDispesasUseCase(IDespesasRepositorio repositorio, IUnitOfWork unitOfWork, IMapper mapper)
+    public RegisterDispesasUseCase(IDespesasWriteOnlyRepositorio repositorio, IUnitOfWork unitOfWork, IMapper mapper)
     {
         _repositorio = repositorio;
         _unitOfWork = unitOfWork;

@@ -1,9 +1,9 @@
 ﻿using Financas.Domain.Entidades;
-using Financas.Domain.Repositorios.Dispesas;
+using Financas.Domain.Repositorios.Despesas;
 using Microsoft.EntityFrameworkCore;
 
 namespace Financas.Infrasctructure.DataAccess.Repositorios;
-internal class DispesasRepositorio : IDespesasRepositorio
+internal class DispesasRepositorio : IDespesasReadOnlyRepositorio, IDespesasWriteOnlyRepositorio
 {
     private readonly FinancasDbContexto _dbContext;
     public DispesasRepositorio(FinancasDbContexto dbContext)

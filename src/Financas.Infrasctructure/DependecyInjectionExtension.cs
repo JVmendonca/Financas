@@ -1,5 +1,5 @@
 ﻿using Financas.Domain.Repositorios;
-using Financas.Domain.Repositorios.Dispesas;
+using Financas.Domain.Repositorios.Despesas;
 using Financas.Infrasctructure.DataAccess;
 using Financas.Infrasctructure.DataAccess.Repositorios;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +18,8 @@ public static class DependecyInjectionExtension
     private static void AddRepositorios(this IServiceCollection services)
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();
-        services.AddScoped<IDespesasRepositorio, DispesasRepositorio>();
+        services.AddScoped<IDespesasReadOnlyRepositorio, DispesasRepositorio>();
+        services.AddScoped<IDespesasWriteOnlyRepositorio, DispesasRepositorio>();
     }
     private static void AddDbContext(this IServiceCollection services, IConfiguration configuration)
     {

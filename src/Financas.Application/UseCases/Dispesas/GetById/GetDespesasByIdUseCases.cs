@@ -1,16 +1,16 @@
 ﻿using AutoMapper;
 using Financas.Communication.Responses;
-using Financas.Domain.Repositorios.Dispesas;
+using Financas.Domain.Repositorios.Despesas;
 using Financas.Exeption;
 using Financas.Exeption.ExeptionBase;
 
 namespace Financas.Application.UseCases.Dispesas.GetById;
 public class GetDespesasByIdUseCases : IGetDespesasByIdUseCases
 {
-    private readonly IDespesasRepositorio _despesaRepository;
+    private readonly IDespesasReadOnlyRepositorio _despesaRepository;
     private readonly IMapper _mapper;
 
-    public GetDespesasByIdUseCases(IDespesasRepositorio despesaRepository, IMapper mapper)
+    public GetDespesasByIdUseCases(IDespesasReadOnlyRepositorio despesaRepository, IMapper mapper)
     {
         _despesaRepository = despesaRepository;
         _mapper = mapper;

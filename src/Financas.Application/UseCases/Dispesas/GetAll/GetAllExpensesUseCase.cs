@@ -1,14 +1,15 @@
 ﻿using AutoMapper;
 using Financas.Communication.Responses;
-using Financas.Domain.Repositorios.Dispesas;
+using Financas.Domain.Repositorios.Despesas;
+
 
 namespace Financas.Application.UseCases.Dispesas.GetAll;
 public class GetAllExpensesUseCase : IGetAllExpensesUseCase
 {
-    private readonly IDespesasRepositorio _repositorio;
+    private readonly IDespesasReadOnlyRepositorio _repositorio;
     private readonly IMapper _mapper;
 
-    public GetAllExpensesUseCase(IDespesasRepositorio repositorio, IMapper mapper)
+    public GetAllExpensesUseCase(IDespesasReadOnlyRepositorio repositorio, IMapper mapper)
     {
         _repositorio = repositorio;
         _mapper = mapper;
