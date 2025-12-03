@@ -34,7 +34,7 @@ public class RegisterDispesasUseCase : IRegisterDispensaUseCase
         
     private void Validate(RequestDispesaJson request)
     {
-        var validator = new RegisterDispensasValidator();    
+        var validator = new DespensasValidator();    
 
         var result = validator.Validate(request);
 

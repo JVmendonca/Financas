@@ -1,5 +1,5 @@
 ﻿using CommonTestUtilities;
-using Financas.Application.UseCases.Dispesas.Register;
+using Financas.Application.UseCases.Dispesas;
 using Financas.Exeption;
 using FluentAssertions;
 namespace Validator.Tests.Dispesas.Register;
@@ -9,7 +9,7 @@ public class RegisterDispensasValidatorTest
     public void success()
     {
         // Preparar
-        var validator = new RegisterDispensasValidator();
+        var validator = new DespensasValidator();
         var request = RequestDispesaJsonBuilder.Build();
 
         // Agir
@@ -23,7 +23,7 @@ public class RegisterDispensasValidatorTest
     public void Error_Titulo_Obrigatorio()
     {
         // Preparar
-        var validator = new RegisterDispensasValidator();
+        var validator = new DespensasValidator();
         var request = RequestDispesaJsonBuilder.Build();
         request.Titulo = string.Empty;
         //request.Valor = 0;
@@ -41,7 +41,7 @@ public class RegisterDispensasValidatorTest
     public void Error_Data_Futura()
     {
         // Preparar
-        var validator = new RegisterDispensasValidator();
+        var validator = new DespensasValidator();
         var request = RequestDispesaJsonBuilder.Build();
         request.Data = DateTime.UtcNow.AddDays(1);
         //request.Valor = 0;
@@ -63,7 +63,7 @@ public class RegisterDispensasValidatorTest
     public void Error_Valor_Invalido(decimal valor)
     {
         // Preparar
-        var validator = new RegisterDispensasValidator();
+        var validator = new DespensasValidator();
         var request = RequestDispesaJsonBuilder.Build();
         request.Valor = valor;
         // Agir

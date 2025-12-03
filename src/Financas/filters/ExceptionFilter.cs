@@ -3,10 +3,9 @@ using Financas.Exeption;
 using Financas.Exeption.ExeptionBase;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.Extensions.FileProviders;
 
 namespace Financas.filters;
-
+ 
 public class ExceptionFilter : IExceptionFilter
 {
     public void OnException(ExceptionContext context)
@@ -23,28 +22,13 @@ public class ExceptionFilter : IExceptionFilter
 
     private void HandleProjectExeption(ExceptionContext context)
     {
-        if (context.Exception is ErrorOnValidationException errorOnValidationException)
-        {
-            var errorResponse = new ResponseErrorJson(errorOnValidationException.Errors);
 
-            context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
-            context.Result = new BadRequestObjectResult(errorResponse);
-        }
-        else if (context.Exception is NotFoundExeption notFoundExeption)
-        {
-            var errorResponse = new ResponseErrorJson(notFoundExeption.Message);
+        var financasExeption = context.Exception as FinancasExeption;
+        var errorResponse = new ResponseErrorJson(financasExeption!.GetErros());
 
-            context.HttpContext.Response.StatusCode = StatusCodes.Status404NotFound;
-            context.Result = new NotFoundObjectResult(errorResponse);
-        }
+        context.HttpContext.Response.StatusCode = financasExeption.StatusCode;
+        context.Result = new ObjectResult(errorResponse);
 
-        else
-        {
-            var errorResponse = new ResponseErrorJson(context.Exception.Message);
-
-            context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
-            context.Result = new BadRequestObjectResult(errorResponse);
-        }
     }
 
     private void ThrowUnkowError(ExceptionContext context)

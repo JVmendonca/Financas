@@ -5,4 +5,7 @@ public abstract class FinancasExeption : System.Exception
     {
         
     }
+
+    public abstract int StatusCode { get; }
+    public abstract List<string> GetErros();
 }

@@ -20,5 +20,6 @@ public class AutoMapping : Profile
         CreateMap<Dispesa, ResponseDespesaJson>();
         CreateMap<Dispesa, ResponseShortExpenseJson>();
         CreateMap<Dispesa, ResponseDespesaIdJson>();
+
     }
 }

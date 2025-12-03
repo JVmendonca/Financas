@@ -20,6 +20,7 @@ public static class DependecyInjectionExtension
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IDespesasReadOnlyRepositorio, DispesasRepositorio>();
         services.AddScoped<IDespesasWriteOnlyRepositorio, DispesasRepositorio>();
+        services.AddScoped<IDespesasUpdateOnlyRepositorio, DispesasRepositorio>();
     }
     private static void AddDbContext(this IServiceCollection services, IConfiguration configuration)
     {
