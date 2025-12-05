@@ -3,6 +3,7 @@ using Financas.Application.UseCases.Dispesas.Delete;
 using Financas.Application.UseCases.Dispesas.GetAll;
 using Financas.Application.UseCases.Dispesas.GetById;
 using Financas.Application.UseCases.Dispesas.Register;
+using Financas.Application.UseCases.Dispesas.Reports.Excel;
 using Financas.Application.UseCases.Dispesas.Update;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -28,5 +29,6 @@ public static class DependecyInjectionExtension
         services.AddScoped<IGetDespesasByIdUseCases, GetDespesasByIdUseCases>();
         services.AddScoped<IDeleteDespesaUseCase, DeleteDespesaUseCase>();
         services.AddScoped<IUpdateDespesaUseCase, UpdateDespesaUseCase>();
+        services.AddScoped<IGenereteDespesaReportExcelUseCase, GenereteDespesaReportExcelUseCase>();
     }
 }
