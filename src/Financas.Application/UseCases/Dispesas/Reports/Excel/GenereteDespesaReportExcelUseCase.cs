@@ -1,12 +1,30 @@
 ﻿using ClosedXML.Excel;
 using DocumentFormat.OpenXml.Spreadsheet;
+using Financas.Communication.Enuns;
+using Financas.Domain.Entidades;
 using Financas.Domain.Reports;
+using Financas.Domain.Repositorios.Despesas;
 
 namespace Financas.Application.UseCases.Dispesas.Reports.Excel;
 public class GenereteDespesaReportExcelUseCase : IGenereteDespesaReportExcelUseCase
 {
+    private const string CURRENCY_SYMBOL = "R$";
+    private readonly IDespesasReadOnlyRepositorio _repositorio;
+
+    public GenereteDespesaReportExcelUseCase(IDespesasReadOnlyRepositorio repositorio)
+    {
+        _repositorio = repositorio;
+    }
+
     public async Task<byte[]> Execute(DateOnly mes)
     {
+        var despesas = await _repositorio.FilterByMonth(mes);
+        if (despesas.Count == 0)
+        {
+            return [];
+        }
+
+
         var workbook = new XLWorkbook();
 
         workbook.Author = "Joao Vitor";
@@ -16,6 +34,40 @@ public class GenereteDespesaReportExcelUseCase : IGenereteDespesaReportExcelUseC
         var worksheet = workbook.AddWorksheet(mes.ToString("MM-yyyy"));
 
         InsertHeader(worksheet);
+
+        var raw = 2;
+        foreach (var despesa in despesas)
+        {
+            worksheet.Cell($"A{raw}").Value = despesa.Titulo;
+            worksheet.Cell($"B{raw}").Value = despesa.Data;
+            worksheet.Cell($"C{raw}").Value = ConvertPaymentType(despesa.Pagamento);
+
+            worksheet.Cell($"D{raw}").Value = despesa.Valor;
+            worksheet.Cell($"D{raw}").Style.NumberFormat.Format = $"-{CURRENCY_SYMBOL} #, ##0.00";
+
+            worksheet.Cell($"E{raw}").Value = despesa.Descricao;
+
+            raw++;
+        }
+
+        worksheet.Columns().AdjustToContents();
+
+        var file = new MemoryStream();
+        workbook.SaveAs(file);
+
+        return file.ToArray();
+    }
+
+    private string ConvertPaymentType(Financas.Domain.Enuns.PaymentType payment)
+    {
+        return payment switch
+        {
+            Financas.Domain.Enuns.PaymentType.dinheiro => "Dinheiro",
+            Financas.Domain.Enuns.PaymentType.cartao_credito => "Cartão de Crédito",
+            Financas.Domain.Enuns.PaymentType.cartao_debito => "Cartão de Débito",
+            Financas.Domain.Enuns.PaymentType.pix => "Pix",
+            _ => string.Empty
+        };
     }
 
     private void InsertHeader(IXLWorksheet worksheet)
@@ -33,7 +85,7 @@ public class GenereteDespesaReportExcelUseCase : IGenereteDespesaReportExcelUseC
         worksheet.Cell("A1").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
         worksheet.Cell("B1").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
         worksheet.Cell("C1").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
-        worksheet.Cell("D1").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
+        worksheet.Cell("D1").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Right);
         worksheet.Cell("E1").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
     }
 

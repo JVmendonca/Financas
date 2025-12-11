@@ -43,4 +43,19 @@ internal class DispesasRepositorio : IDespesasReadOnlyRepositorio, IDespesasWrit
     {
         _dbContext.Dispesas.Update(dispesa);
     }
+
+    public async Task<List<Dispesa>> FilterByMonth(DateOnly date)
+    {
+        var startdate = new DateTime(year: date.Year, month: date.Month, day: 1).Date;
+
+        var daysInMonth = DateTime.DaysInMonth(year: date.Year, month: date.Month);
+        var EndDate = new DateTime(year: date.Year, month: date.Month, day: daysInMonth, hour: 23, minute: 59, second: 59);
+
+        return await _dbContext
+            .Dispesas
+            .AsNoTracking()
+            .Where(d => d.Data >= startdate && d.Data <= EndDate)
+            .OrderBy(d => d.Data)
+            .ToListAsync();
+    }
 }
