@@ -1,4 +1,5 @@
 ﻿using Financas.Application.UseCases.Dispesas.Reports.Excel;
+using Financas.Application.UseCases.Dispesas.Reports.Pdf;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 
@@ -22,4 +23,20 @@ public class ReportController : ControllerBase
         return NoContent();
 
     }
+
+
+    [HttpGet("Pdf")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> GetPdf(
+        [FromServices] IGenereteDespesasReportPdfUseCase useCase,
+        [FromQuery] DateOnly Mes)
+    {
+        byte[] file = await useCase.Execute(Mes);
+        if (file.Length > 0)
+            return File(file, MediaTypeNames.Application.Pdf, "report.pdf");
+
+        return NoContent();
+    }
+
 }

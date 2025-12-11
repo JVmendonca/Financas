@@ -24,8 +24,7 @@ public class GenereteDespesaReportExcelUseCase : IGenereteDespesaReportExcelUseC
             return [];
         }
 
-
-        var workbook = new XLWorkbook();
+        using var workbook = new XLWorkbook();
 
         workbook.Author = "Joao Vitor";
         workbook.Style.Font.FontSize = 12;
@@ -39,7 +38,12 @@ public class GenereteDespesaReportExcelUseCase : IGenereteDespesaReportExcelUseC
         foreach (var despesa in despesas)
         {
             worksheet.Cell($"A{raw}").Value = despesa.Titulo;
-            worksheet.Cell($"B{raw}").Value = despesa.Data;
+
+            // ⬇ Corrigido: escrever como DateTime e aplicar formato adequado
+            var date = new DateTime(despesa.Data.Year, despesa.Data.Month, despesa.Data.Day);
+            worksheet.Cell($"B{raw}").Value = date;
+            worksheet.Cell($"B{raw}").Style.DateFormat.Format = "dd/MM/yyyy"; // evita #####
+
             worksheet.Cell($"C{raw}").Value = ConvertPaymentType(despesa.Pagamento);
 
             worksheet.Cell($"D{raw}").Value = despesa.Valor;
@@ -50,7 +54,9 @@ public class GenereteDespesaReportExcelUseCase : IGenereteDespesaReportExcelUseC
             raw++;
         }
 
+        // ⬇ Ajuste padrão + garantir largura mínima da coluna de datas (correção definitiva)
         worksheet.Columns().AdjustToContents();
+        worksheet.Column(2).Width = Math.Max(worksheet.Column(2).Width, 12); // força largura adequada
 
         var file = new MemoryStream();
         workbook.SaveAs(file);
@@ -79,7 +85,6 @@ public class GenereteDespesaReportExcelUseCase : IGenereteDespesaReportExcelUseC
         worksheet.Cell("E1").Value = ResourcereportGenerationMessages.DESCRICAO;
 
         worksheet.Cells("A1:E1").Style.Font.Bold = true;
-
         worksheet.Cells("A1:E1").Style.Fill.BackgroundColor = XLColor.FromHtml("#F5C2B6");
 
         worksheet.Cell("A1").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
@@ -88,5 +93,4 @@ public class GenereteDespesaReportExcelUseCase : IGenereteDespesaReportExcelUseC
         worksheet.Cell("D1").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Right);
         worksheet.Cell("E1").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
     }
-
 }
