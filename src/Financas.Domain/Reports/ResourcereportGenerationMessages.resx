@@ -132,4 +132,10 @@
   <data name="DATA" xml:space="preserve">
     <value>Data</value>
   </data>
+  <data name="DESPESA_PARA" xml:space="preserve">
+    <value>Despesa para</value>
+  </data>
+  <data name="TOTAL_GASTO_EM" xml:space="preserve">
+    <value>Total de  gasto em {0}</value>
+  </data>
 </root>

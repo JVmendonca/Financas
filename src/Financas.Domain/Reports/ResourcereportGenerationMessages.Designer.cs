@@ -22,14 +22,14 @@ namespace Financas.Domain.Reports {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ResourcereportGenerationMessages {
+    public class ResourceReportGenerationMessages {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ResourcereportGenerationMessages() {
+        internal ResourceReportGenerationMessages() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Financas.Domain.Reports {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Financas.Domain.Reports.ResourcereportGenerationMessages", typeof(ResourcereportGenerationMessages).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Financas.Domain.Reports.ResourceReportGenerationMessages", typeof(ResourceReportGenerationMessages).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -79,6 +79,15 @@ namespace Financas.Domain.Reports {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Despesa para.
+        /// </summary>
+        public static string DESPESA_PARA {
+            get {
+                return ResourceManager.GetString("DESPESA_PARA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pagamento.
         /// </summary>
         public static string PAGAMENTO {
@@ -93,6 +102,15 @@ namespace Financas.Domain.Reports {
         public static string TITULO {
             get {
                 return ResourceManager.GetString("TITULO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total de  gasto em {0}.
+        /// </summary>
+        public static string TOTAL_GASTO_EM {
+            get {
+                return ResourceManager.GetString("TOTAL_GASTO_EM", resourceCulture);
             }
         }
         

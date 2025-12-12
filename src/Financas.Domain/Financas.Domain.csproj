@@ -7,33 +7,33 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Update="Reports\ResourceErrorMassages-en-US.Designer.cs">
-      <DependentUpon>ResourceErrorMassages-en-US.resx</DependentUpon>
+    <Compile Update="Reports\ResourceReportGenerationMessages-en-US.Designer.cs">
+      <DependentUpon>ResourceReportGenerationMessages-en-US.resx</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Update="Reports\ResourceErrorMassages-pt-PT.Designer.cs">
-      <DependentUpon>ResourceErrorMassages-pt-PT.resx</DependentUpon>
+    <Compile Update="Reports\ResourceReportGenerationMessages-pt-PT.Designer.cs">
+      <DependentUpon>ResourceReportGenerationMessages-pt-PT.resx</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
     <Compile Update="Reports\ResourcereportGenerationMessages.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>ResourcereportGenerationMessages.resx</DependentUpon>
+      <DependentUpon>ResourceReportGenerationMessages.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Reports\ResourceErrorMassages-en-US.resx">
-      <LastGenOutput>ResourceErrorMassages-en-US.Designer.cs</LastGenOutput>
+    <EmbeddedResource Update="Reports\ResourceReportGenerationMessages-en-US.resx">
+      <LastGenOutput>ResourceReportGenerationMessages-en-US.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Reports\ResourceErrorMassages-pt-PT.resx">
-      <LastGenOutput>ResourceErrorMassages-pt-PT.Designer.cs</LastGenOutput>
+    <EmbeddedResource Update="Reports\ResourceReportGenerationMessages-pt-PT.resx">
+      <LastGenOutput>ResourceReportGenerationMessages-pt-PT.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Reports\ResourcereportGenerationMessages.resx">
+    <EmbeddedResource Update="Reports\ResourceReportGenerationMessages.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourcereportGenerationMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>

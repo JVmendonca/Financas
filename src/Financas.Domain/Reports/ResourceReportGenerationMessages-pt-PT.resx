@@ -117,4 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DATA" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="DESCRICAO" xml:space="preserve">
+    <value>Descricao</value>
+  </data>
+  <data name="DESPESA_PARA" xml:space="preserve">
+    <value>Despesa para</value>
+  </data>
+  <data name="PAGAMENTO" xml:space="preserve">
+    <value>Pagamento</value>
+  </data>
+  <data name="TITULO" xml:space="preserve">
+    <value>Titulo</value>
+  </data>
+  <data name="TOTAL_GASTO_EM" xml:space="preserve">
+    <value>Total gasto em {0}</value>
+  </data>
+  <data name="VALOR" xml:space="preserve">
+    <value>Montante</value>
+  </data>
 </root>

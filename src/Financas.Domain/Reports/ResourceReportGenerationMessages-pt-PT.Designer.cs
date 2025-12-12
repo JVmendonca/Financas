@@ -22,14 +22,14 @@ namespace Financas.Domain.Reports {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ResourceErrorMassages_pt_PT {
+    public class ResourceReportGenerationMessages_pt_PT {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ResourceErrorMassages_pt_PT() {
+        internal ResourceReportGenerationMessages_pt_PT() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Financas.Domain.Reports {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Financas.Domain.Reports.ResourceErrorMassages-pt-PT", typeof(ResourceErrorMassages_pt_PT).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Financas.Domain.Reports.ResourceReportGenerationMessages-pt-PT", typeof(ResourceReportGenerationMessages_pt_PT).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,6 +57,69 @@ namespace Financas.Domain.Reports {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data.
+        /// </summary>
+        public static string DATA {
+            get {
+                return ResourceManager.GetString("DATA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Descricao.
+        /// </summary>
+        public static string DESCRICAO {
+            get {
+                return ResourceManager.GetString("DESCRICAO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Despesa para.
+        /// </summary>
+        public static string DESPESA_PARA {
+            get {
+                return ResourceManager.GetString("DESPESA_PARA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pagamento.
+        /// </summary>
+        public static string PAGAMENTO {
+            get {
+                return ResourceManager.GetString("PAGAMENTO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Titulo.
+        /// </summary>
+        public static string TITULO {
+            get {
+                return ResourceManager.GetString("TITULO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total gasto em {0}.
+        /// </summary>
+        public static string TOTAL_GASTO_EM {
+            get {
+                return ResourceManager.GetString("TOTAL_GASTO_EM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Montante.
+        /// </summary>
+        public static string VALOR {
+            get {
+                return ResourceManager.GetString("VALOR", resourceCulture);
             }
         }
     }

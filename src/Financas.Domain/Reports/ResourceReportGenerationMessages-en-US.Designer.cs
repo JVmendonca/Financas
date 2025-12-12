@@ -22,14 +22,14 @@ namespace Financas.Domain.Reports {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ResourceErrorMassages_en_US {
+    public class ResourceReportGenerationMessages_en_US {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ResourceErrorMassages_en_US() {
+        internal ResourceReportGenerationMessages_en_US() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Financas.Domain.Reports {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Financas.Domain.Reports.ResourceErrorMassages-en-US", typeof(ResourceErrorMassages_en_US).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Financas.Domain.Reports.ResourceReportGenerationMessages-en-US", typeof(ResourceReportGenerationMessages_en_US).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,38 +61,56 @@ namespace Financas.Domain.Reports {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Amount.
-        /// </summary>
-        public static string AMOUT {
-            get {
-                return ResourceManager.GetString("AMOUT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Date.
         /// </summary>
-        public static string DATE {
+        public static string DATA {
             get {
-                return ResourceManager.GetString("DATE", resourceCulture);
+                return ResourceManager.GetString("DATA", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
-        public static string DESCRIPTION {
+        public static string DECRICAO {
             get {
-                return ResourceManager.GetString("DESCRIPTION", resourceCulture);
+                return ResourceManager.GetString("DECRICAO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expenses for.
+        /// </summary>
+        public static string DESPESA_POR {
+            get {
+                return ResourceManager.GetString("DESPESA_POR", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Title.
         /// </summary>
-        public static string TITLE {
+        public static string TITULO {
             get {
-                return ResourceManager.GetString("TITLE", resourceCulture);
+                return ResourceManager.GetString("TITULO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total spent in {0}.
+        /// </summary>
+        public static string TOTAL_GASTO_EM {
+            get {
+                return ResourceManager.GetString("TOTAL_GASTO_EM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Amount.
+        /// </summary>
+        public static string VALOR {
+            get {
+                return ResourceManager.GetString("VALOR", resourceCulture);
             }
         }
     }

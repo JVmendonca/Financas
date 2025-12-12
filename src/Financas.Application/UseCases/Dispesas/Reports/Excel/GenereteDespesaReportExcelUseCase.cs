@@ -78,11 +78,11 @@ public class GenereteDespesaReportExcelUseCase : IGenereteDespesaReportExcelUseC
 
     private void InsertHeader(IXLWorksheet worksheet)
     {
-        worksheet.Cell("A1").Value = ResourcereportGenerationMessages.TITULO;
-        worksheet.Cell("B1").Value = ResourcereportGenerationMessages.DATA;
-        worksheet.Cell("C1").Value = ResourcereportGenerationMessages.PAGAMENTO;
-        worksheet.Cell("D1").Value = ResourcereportGenerationMessages.VALOR;
-        worksheet.Cell("E1").Value = ResourcereportGenerationMessages.DESCRICAO;
+        worksheet.Cell("A1").Value = ResourceReportGenerationMessages.TITULO;
+        worksheet.Cell("B1").Value = ResourceReportGenerationMessages.DATA;
+        worksheet.Cell("C1").Value = ResourceReportGenerationMessages.PAGAMENTO;
+        worksheet.Cell("D1").Value = ResourceReportGenerationMessages.VALOR;
+        worksheet.Cell("E1").Value = ResourceReportGenerationMessages.DESCRICAO;
 
         worksheet.Cells("A1:E1").Style.Font.Bold = true;
         worksheet.Cells("A1:E1").Style.Fill.BackgroundColor = XLColor.FromHtml("#F5C2B6");
