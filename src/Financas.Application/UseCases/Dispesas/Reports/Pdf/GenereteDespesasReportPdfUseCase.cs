@@ -29,6 +29,20 @@ public class GenereteDespesasReportPdfUseCase : IGenereteDespesasReportPdfUseCas
         var document = CreatDocument(mes);
         var page = CreatPage(document);
 
+
+        var table = page.AddTable();
+        table.AddColumn();
+        table.AddColumn();
+
+        var row = table.AddRow();
+
+        var image = row.Cells[0].AddImage("C:\\FotosAleatorias\\Joaovtm.png");
+ 
+        row.Cells[1].AddParagraph("ola, João Vitor");
+        row.Cells[1].Format.Font = new Font { Name = FontHelper.RALEWAY_REGULAR, Size = 16 };
+
+
+
         var paragrafo = page.AddParagraph();
         var titulo = string.Format(ResourceReportGenerationMessages.TOTAL_GASTO_EM, mes.ToString("Y"));
 
@@ -37,7 +51,7 @@ public class GenereteDespesasReportPdfUseCase : IGenereteDespesasReportPdfUseCas
         paragrafo.AddLineBreak();
 
         var total_despesas = despesas.Sum(despesa => despesa.Valor);
-        paragrafo.AddFormattedText($"{total_despesas} {CURRENCY_SYMBOL}", new Font {Name = FontHelper.WORKSANS_BlACK, Size = 50});
+        paragrafo.AddFormattedText($"{total_despesas} {CURRENCY_SYMBOL}", new Font {Name = FontHelper.WORKSANS_BLACK, Size = 50});
 
         return RenderDocuments(document);
     }
