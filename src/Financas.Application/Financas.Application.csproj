@@ -34,4 +34,10 @@
     <ProjectReference Include="..\Financas.Exeption\Financas.Exeption.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Logo\Joaovtm.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

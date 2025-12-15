@@ -2,6 +2,7 @@
 using DocumentFormat.OpenXml.Spreadsheet;
 using Financas.Communication.Enuns;
 using Financas.Domain.Entidades;
+using Financas.Domain.Enums.Extensions;
 using Financas.Domain.Reports;
 using Financas.Domain.Repositorios.Despesas;
 
@@ -44,7 +45,7 @@ public class GenereteDespesaReportExcelUseCase : IGenereteDespesaReportExcelUseC
             worksheet.Cell($"B{raw}").Value = date;
             worksheet.Cell($"B{raw}").Style.DateFormat.Format = "dd/MM/yyyy"; // evita #####
 
-            worksheet.Cell($"C{raw}").Value = ConvertPaymentType(despesa.Pagamento);
+            worksheet.Cell($"C{raw}").Value = despesa.Pagamento.PaymentTypeToString();
 
             worksheet.Cell($"D{raw}").Value = despesa.Valor;
             worksheet.Cell($"D{raw}").Style.NumberFormat.Format = $"-{CURRENCY_SYMBOL} #, ##0.00";
@@ -64,17 +65,6 @@ public class GenereteDespesaReportExcelUseCase : IGenereteDespesaReportExcelUseC
         return file.ToArray();
     }
 
-    private string ConvertPaymentType(Financas.Domain.Enuns.PaymentType payment)
-    {
-        return payment switch
-        {
-            Financas.Domain.Enuns.PaymentType.dinheiro => "Dinheiro",
-            Financas.Domain.Enuns.PaymentType.cartao_credito => "Cartão de Crédito",
-            Financas.Domain.Enuns.PaymentType.cartao_debito => "Cartão de Débito",
-            Financas.Domain.Enuns.PaymentType.pix => "Pix",
-            _ => string.Empty
-        };
-    }
 
     private void InsertHeader(IXLWorksheet worksheet)
     {
