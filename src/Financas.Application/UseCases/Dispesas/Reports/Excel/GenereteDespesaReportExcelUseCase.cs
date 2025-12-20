@@ -2,7 +2,7 @@
 using DocumentFormat.OpenXml.Spreadsheet;
 using Financas.Communication.Enuns;
 using Financas.Domain.Entidades;
-using Financas.Domain.Enums.Extensions;
+using Financas.Domain.Extensions;
 using Financas.Domain.Reports;
 using Financas.Domain.Repositorios.Despesas;
 

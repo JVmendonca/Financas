@@ -6,6 +6,7 @@ using Financas.Application.UseCases.Dispesas.Register;
 using Financas.Application.UseCases.Dispesas.Reports.Excel;
 using Financas.Application.UseCases.Dispesas.Reports.Pdf;
 using Financas.Application.UseCases.Dispesas.Update;
+using Financas.Application.UseCases.User.Register;
 using Microsoft.Extensions.DependencyInjection;
 
 
@@ -32,5 +33,6 @@ public static class DependecyInjectionExtension
         services.AddScoped<IUpdateDespesaUseCase, UpdateDespesaUseCase>();
         services.AddScoped<IGenereteDespesaReportExcelUseCase, GenereteDespesaReportExcelUseCase>();
         services.AddScoped<IGenereteDespesasReportPdfUseCase, GenereteDespesasReportPdfUseCase>();
+        services.AddScoped<IRegisterUserUseCase, RegisterUserUseCase>();
     }
 }

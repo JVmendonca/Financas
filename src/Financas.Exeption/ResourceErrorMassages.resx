@@ -135,4 +135,13 @@
   <data name="DESPESA_NAO_ENCONTRADA" xml:space="preserve">
     <value>Despesa Não Encontrada</value>
   </data>
+  <data name="NOME_VAZIO" xml:space="preserve">
+    <value>O nome está vazio</value>
+  </data>
+  <data name="EMAIL_VAZIO" xml:space="preserve">
+    <value>O Email nao pode está vazio</value>
+  </data>
+  <data name="EMAIL_INVALIDO" xml:space="preserve">
+    <value>ó  email é invalido</value>
+  </data>
 </root>

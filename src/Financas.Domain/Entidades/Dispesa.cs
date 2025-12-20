@@ -9,4 +9,6 @@ public class Dispesa
     public DateTime Data { get; set; }
     public decimal Valor { get; set; }
     public PaymentType Pagamento { get; set; }  
+    public long UserId { get; set; }
+    public User User { get; set; } = default!;
 }

@@ -2,6 +2,8 @@ using Financas.filters;
 using Financas.Infrasctructure;
 using Financas.Middleware;
 using Financas.Application;
+using Financas.Infrasctructure.DataAccess;
+using Financas.Infrasctructure.Migrations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,4 +35,15 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+await MigrateDatabase();
+
 app.Run();
+
+async Task MigrateDatabase()
+{
+    await using var scope = app.Services.CreateAsyncScope();
+
+    await DataBaseMigration.MigrateDataBase(scope.ServiceProvider);
+
+    
+}

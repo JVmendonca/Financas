@@ -79,11 +79,38 @@ namespace Financas.Exeption {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ó  email é invalido.
+        /// </summary>
+        public static string EMAIL_INVALIDO {
+            get {
+                return ResourceManager.GetString("EMAIL_INVALIDO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O Email nao pode está vazio.
+        /// </summary>
+        public static string EMAIL_VAZIO {
+            get {
+                return ResourceManager.GetString("EMAIL_VAZIO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to erro desconhecido.
         /// </summary>
         public static string ERRO_DESCONHECIDO {
             get {
                 return ResourceManager.GetString("ERRO_DESCONHECIDO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O nome está vazio.
+        /// </summary>
+        public static string NOME_VAZIO {
+            get {
+                return ResourceManager.GetString("NOME_VAZIO", resourceCulture);
             }
         }
         

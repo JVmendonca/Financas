@@ -1,6 +1,6 @@
 ﻿using Financas.Application.UseCases.Dispesas.Reports.Pdf.Colors;
 using Financas.Application.UseCases.Dispesas.Reports.Pdf.Fonts;
-using Financas.Domain.Enums.Extensions;
+using Financas.Domain.Extensions;
 using Financas.Domain.Reports;
 using Financas.Domain.Repositorios.Despesas;
 using MigraDoc.DocumentObjectModel;
