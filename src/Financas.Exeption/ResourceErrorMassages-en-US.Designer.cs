@@ -79,11 +79,38 @@ namespace Financas.Exeption {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ivanlid email address.
+        /// </summary>
+        public static string EMAIL_INVALIDO {
+            get {
+                return ResourceManager.GetString("EMAIL_INVALIDO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The email cannot be empty.
+        /// </summary>
+        public static string EMAIL_VAZIO {
+            get {
+                return ResourceManager.GetString("EMAIL_VAZIO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unknown Error.
         /// </summary>
         public static string ERRO_DESCONHECIDO {
             get {
                 return ResourceManager.GetString("ERRO_DESCONHECIDO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name cannot be empty.
+        /// </summary>
+        public static string NOME_VAZIO {
+            get {
+                return ResourceManager.GetString("NOME_VAZIO", resourceCulture);
             }
         }
         

@@ -123,8 +123,17 @@
   <data name="DESPESA_NAO_ENCONTRADA" xml:space="preserve">
     <value>Despesa Não Encontrada</value>
   </data>
+  <data name="EMAIL_INVALIDO" xml:space="preserve">
+    <value>Ivanlid email address</value>
+  </data>
+  <data name="EMAIL_VAZIO" xml:space="preserve">
+    <value>The email cannot be empty</value>
+  </data>
   <data name="ERRO_DESCONHECIDO" xml:space="preserve">
     <value>Unknown Error</value>
+  </data>
+  <data name="NOME_VAZIO" xml:space="preserve">
+    <value>The name cannot be empty</value>
   </data>
   <data name="TIPO_PAGAMENTO_INVALIDO" xml:space="preserve">
     <value>Invalid Payment Type</value>

@@ -144,4 +144,7 @@
   <data name="EMAIL_INVALIDO" xml:space="preserve">
     <value>ó  email é invalido</value>
   </data>
+  <data name="SENHA_INVALIDA" xml:space="preserve">
+    <value>Sua senha deve ter no minimo 8 caracteres,contendo uma letra maiscula uma minuscula um numero e um caractere especial</value>
+  </data>
 </root>

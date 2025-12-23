@@ -115,6 +115,15 @@ namespace Financas.Exeption {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sua senha deve ter no minimo 8 caracteres,contendo uma letra maiscula uma minuscula um numero e um caractere especial.
+        /// </summary>
+        public static string SENHA_INVALIDA {
+            get {
+                return ResourceManager.GetString("SENHA_INVALIDA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tipo De Pagamento Invalido.
         /// </summary>
         public static string TIPO_PAGAMENTO_INVALIDO {
