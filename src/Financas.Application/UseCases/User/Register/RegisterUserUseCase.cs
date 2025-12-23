@@ -1,16 +1,19 @@
 ﻿using AutoMapper;
 using Financas.Communication.Request;
 using Financas.Communication.Responses;
+using Financas.Domain.Security.Cryptography;
 using Financas.Exeption.ExeptionBase;
 
 namespace Financas.Application.UseCases.User.Register;
 public class RegisterUserUseCase : IRegisterUserUseCase
 {
     private readonly IMapper _mapper;
+    private readonly IPassowordEncripter _passowordEncripter;
 
-    public RegisterUserUseCase(IMapper mapper)
+    public RegisterUserUseCase(IMapper mapper, IPassowordEncripter passowordEncripter)
     {
         _mapper = mapper;
+        _passowordEncripter = passowordEncripter;
     }
 
     public async Task<ResponseRegisteredUserJson> Execute(RequestRegisterUserJson request)
@@ -18,6 +21,7 @@ public class RegisterUserUseCase : IRegisterUserUseCase
         Validate(request);
 
         var user = _mapper.Map<Domain.Entidades.User>(request);
+        user.Senha = _passowordEncripter.Encript(request.Senha);
 
         return new ResponseRegisteredUserJson
         {

@@ -1,7 +1,9 @@
 ﻿using Financas.Domain.Repositorios;
 using Financas.Domain.Repositorios.Despesas;
+using Financas.Domain.Security.Cryptography;
 using Financas.Infrasctructure.DataAccess;
 using Financas.Infrasctructure.DataAccess.Repositorios;
+using Financas.Infrasctructure.Security;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,6 +15,8 @@ public static class DependecyInjectionExtension
     {
         AddDbContext(services, configuration);
         AddRepositorios(services);
+
+        services.AddScoped<IPassowordEncripter, Crytptography>();
     }
 
     private static void AddRepositorios(this IServiceCollection services)
