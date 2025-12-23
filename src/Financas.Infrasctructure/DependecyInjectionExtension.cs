@@ -1,8 +1,10 @@
 ﻿using Financas.Domain.Repositorios;
 using Financas.Domain.Repositorios.Despesas;
+using Financas.Domain.Repositorios.User;
 using Financas.Domain.Security.Cryptography;
 using Financas.Infrasctructure.DataAccess;
 using Financas.Infrasctructure.DataAccess.Repositorios;
+using Financas.Infrasctructure.DataAccess.Repositorios.User;
 using Financas.Infrasctructure.Security;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -25,6 +27,8 @@ public static class DependecyInjectionExtension
         services.AddScoped<IDespesasReadOnlyRepositorio, DispesasRepositorio>();
         services.AddScoped<IDespesasWriteOnlyRepositorio, DispesasRepositorio>();
         services.AddScoped<IDespesasUpdateOnlyRepositorio, DispesasRepositorio>();
+        services.AddScoped<IUserReadOnlyRepository, UserRepository>();
+        services.AddScoped<IUserWriteOnlyRepository, UserRepository>();
     }
     private static void AddDbContext(this IServiceCollection services, IConfiguration configuration)
     {

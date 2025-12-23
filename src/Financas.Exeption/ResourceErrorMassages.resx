@@ -147,4 +147,7 @@
   <data name="SENHA_INVALIDA" xml:space="preserve">
     <value>Sua senha deve ter no minimo 8 caracteres,contendo uma letra maiscula uma minuscula um numero e um caractere especial</value>
   </data>
+  <data name="EMAIL_JA_EXISTE" xml:space="preserve">
+    <value>Esse e-mail já esta sendo usado</value>
+  </data>
 </root>

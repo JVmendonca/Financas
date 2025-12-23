@@ -11,17 +11,22 @@ public class AutoMapping : Profile
         RequestToEntity();
         EntityToRequest();
     }
+
     private void RequestToEntity()
     {
         CreateMap<RequestDispesaJson, Dispesa>();
-        CreateMap<ResponseRegisteredUserJson, User>()
-            .ForMember(dest => dest.Senha, config => config.Ignore());
+
+        CreateMap<RequestRegisterUserJson, User>()
+            .ForMember(dest => dest.Senha, config => config.Ignore())              // será criptografada no use case
+            .ForMember(dest => dest.UserIndetificador, config => config.Ignore()); // será gerado Guid no use case
     }
+
     private void EntityToRequest()
     {
         CreateMap<Dispesa, ResponseDespesaJson>();
         CreateMap<Dispesa, ResponseShortExpenseJson>();
         CreateMap<Dispesa, ResponseDespesaIdJson>();
 
+        
     }
 }

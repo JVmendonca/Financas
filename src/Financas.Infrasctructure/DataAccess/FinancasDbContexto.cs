@@ -6,6 +6,6 @@ internal class FinancasDbContexto : DbContext
 {
     public FinancasDbContexto(DbContextOptions options) : base(options) { }
     public DbSet<Dispesa> Dispesas { get; set; }
-
+    public DbSet<User> Users { get; set; }
 }
  

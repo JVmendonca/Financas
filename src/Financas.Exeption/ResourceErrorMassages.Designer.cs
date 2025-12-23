@@ -88,6 +88,15 @@ namespace Financas.Exeption {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Esse e-mail já esta sendo usado.
+        /// </summary>
+        public static string EMAIL_JA_EXISTE {
+            get {
+                return ResourceManager.GetString("EMAIL_JA_EXISTE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to O Email nao pode está vazio.
         /// </summary>
         public static string EMAIL_VAZIO {
