@@ -4,9 +4,11 @@ using Financas.Communication.Responses;
 using Financas.Domain.Repositorios;
 using Financas.Domain.Repositorios.User;
 using Financas.Domain.Security.Cryptography;
+using Financas.Domain.Security.Tokens;
 using Financas.Exeption;
 using Financas.Exeption.ExeptionBase;
 using FluentValidation.Results;
+
 
 namespace Financas.Application.UseCases.User.Register;
 public class RegisterUserUseCase : IRegisterUserUseCase
@@ -16,18 +18,21 @@ public class RegisterUserUseCase : IRegisterUserUseCase
     private readonly IUserReadOnlyRepository _userReadOnlyRepository;
     private readonly IUserWriteOnlyRepository _userWriteOnlyRepository;
     private readonly IUnitOfWork _UnitOfWork;
+    private readonly IAccesTokenGeneretor _tokenGeneretor;
 
     public RegisterUserUseCase(IMapper mapper, 
         IPassowordEncripter passowordEncripter,
         IUserReadOnlyRepository userReadOnlyRepository,
         IUserWriteOnlyRepository userWriteOnlyRepository,
-        IUnitOfWork unitOfWork)
+        IUnitOfWork unitOfWork,
+        IAccesTokenGeneretor tokenGeneretor)
     {
         _mapper = mapper;
         _passowordEncripter = passowordEncripter;
         _userReadOnlyRepository = userReadOnlyRepository;
         _userWriteOnlyRepository = userWriteOnlyRepository;
         _UnitOfWork = unitOfWork;
+        _tokenGeneretor = tokenGeneretor;
     }
 
     public async Task<ResponseRegisteredUserJson> Execute(RequestRegisterUserJson request)
@@ -45,6 +50,7 @@ public class RegisterUserUseCase : IRegisterUserUseCase
         return new ResponseRegisteredUserJson
         {
             Nome = user.Nome,
+            Token = _tokenGeneretor.Generate(user)
         };
   }
 

@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Financas.Communication.Enuns;
 using Financas.Communication.Request;
 using Financas.Communication.Responses;
 using Financas.Domain.Entidades;

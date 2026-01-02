@@ -1,6 +1,6 @@
 ﻿using Financas.Domain.Security.Cryptography;
 
-namespace Financas.Infrasctructure.Security;
+namespace Financas.Infrasctructure.Security.Cryptography;
 internal class Crytptography : IPassowordEncripter
 {
     public string Encript(string senha)
