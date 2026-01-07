@@ -1,5 +1,6 @@
 ﻿namespace Financas.Domain.Security.Cryptography;
 public interface IPassowordEncripter
 {
-    string Encript(string senha);
+    string Encrypt(string senha);
+    bool Verify(string senha, string senhaHash);
 }
