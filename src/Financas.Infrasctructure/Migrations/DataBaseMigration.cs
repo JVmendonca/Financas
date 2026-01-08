@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Financas.Infrasctructure.Migrations;
 public static class DataBaseMigration
 {
-    public async static Task MigrateDataBase(IServiceProvider serviceProvider)
+    public static async Task MigrateDataBase(IServiceProvider serviceProvider)
     {
         var dbContext = serviceProvider.GetRequiredService<FinancasDbContexto>();
 
