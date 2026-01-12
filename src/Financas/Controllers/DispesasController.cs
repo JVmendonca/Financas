@@ -5,17 +5,20 @@ using Financas.Application.UseCases.Dispesas.Register;
 using Financas.Application.UseCases.Dispesas.Update;
 using Financas.Communication.Request;
 using Financas.Communication.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Financas.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class DispesasController : ControllerBase
 {
     [HttpPost]
     [ProducesResponseType(typeof(ResponseDespesaJson), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
+
     public async Task<IActionResult> Register(
         [FromServices] IRegisterDispensaUseCase useCase,
         [FromBody] RequestDispesaJson request)
