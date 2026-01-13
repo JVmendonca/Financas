@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 namespace Financas.Application.UseCases.User;
 public class SenhaValidator<T> : PropertyValidator<T, string>
 {
-    private const string ERROR_MESSAGE_KEY = "ErrorMessage.";  
+    private const string ERROR_MESSAGE_KEY = "ErrorMessage";
 
     public override string Name => "SenhaValidator";
 
@@ -19,13 +19,13 @@ public class SenhaValidator<T> : PropertyValidator<T, string>
     {
         if (string.IsNullOrEmpty(senha))
         {
-            context.MessageFormatter.AppendArgument(ERROR_MESSAGE_KEY, ResourceErrorMassages.SENHA_INVALIDA );
+            context.MessageFormatter.AppendArgument(ERROR_MESSAGE_KEY, ResourceErrorMassages.SENHA_INVALIDA);
             return false;
         }
 
         if (senha.Length < 8)
         {
-            context.MessageFormatter.AppendArgument(ERROR_MESSAGE_KEY, ResourceErrorMassages.SENHA_INVALIDA );
+            context.MessageFormatter.AppendArgument(ERROR_MESSAGE_KEY, ResourceErrorMassages.SENHA_INVALIDA);
             return false;
         }
 

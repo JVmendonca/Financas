@@ -2,6 +2,7 @@
 using Financas.Exeption;
 using FluentValidation;
 
+
 namespace Financas.Application.UseCases.User.Register;
 public class RegisterUserValidator : AbstractValidator<RequestRegisterUserJson>
 {
@@ -12,6 +13,7 @@ public class RegisterUserValidator : AbstractValidator<RequestRegisterUserJson>
             .NotEmpty()
             .WithMessage(ResourceErrorMassages.EMAIL_VAZIO)
             .EmailAddress()
+            .When(user => string.IsNullOrWhiteSpace(user.Email) == false, ApplyConditionTo.CurrentValidator)
             .WithMessage(ResourceErrorMassages.EMAIL_INVALIDO);
 
         RuleFor(user => user.Senha).SetValidator(new SenhaValidator<RequestRegisterUserJson>());
