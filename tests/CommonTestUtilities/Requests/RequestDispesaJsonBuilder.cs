@@ -2,7 +2,7 @@
 using Financas.Communication.Enuns;
 using Financas.Communication.Request;
 
-namespace CommonTestUtilities;
+namespace CommonTestUtilities.Requests;
 public class RequestDispesaJsonBuilder
 {
     public static RequestDispesaJson Build()

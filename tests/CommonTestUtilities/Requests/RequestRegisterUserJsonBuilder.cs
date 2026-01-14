@@ -1,7 +1,7 @@
 ﻿using Bogus;
 using Financas.Communication.Request;
 
-namespace CommonTestUtilities;
+namespace CommonTestUtilities.Requests;
 public class RequestRegisterUserJsonBuilder
 {
     public static RequestRegisterUserJson Build()

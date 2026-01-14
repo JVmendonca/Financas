@@ -1,4 +1,4 @@
-﻿using CommonTestUtilities;
+﻿using CommonTestUtilities.Requests;
 using Financas.Application.UseCases.User.Register;
 using Financas.Exeption;
 using FluentAssertions;
