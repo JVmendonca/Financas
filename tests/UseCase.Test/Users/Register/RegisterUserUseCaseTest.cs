@@ -4,6 +4,8 @@ using CommonTestUtilities.Repositorios;
 using CommonTestUtilities.Requests;
 using CommonTestUtilities.Token;
 using Financas.Application.UseCases.User.Register;
+using Financas.Exeption;
+using Financas.Exeption.ExeptionBase;
 using FluentAssertions;
 
 namespace UseCase.Test.Users.Register;
@@ -22,15 +24,35 @@ public class RegisterUserUseCaseTest
         result.Token.Should().NotBeNullOrEmpty();
     }
 
-    private RegisterUserUseCase CreateUseCase()
+    [Fact]
+    public async Task Error_Nome_Empty()
+    {
+        var request = RequestRegisterUserJsonBuilder.Build();
+        request.Nome = string.Empty;
+
+        var useCase = CreateUseCase(request.Email);
+
+        var act = async () => await useCase.Execute(request);
+
+        var result = await act.Should().ThrowAsync<ErrorOnValidationException>();
+
+        result.Where(ex => ex.GetErros().Count == 1 && ex.GetErros().Contains(ResourceErrorMassages.NOME_VAZIO));
+    }
+
+    private RegisterUserUseCase CreateUseCase(string? email = null)
     {
         var mapper = MapperBuilder.Build();
         var passwordEncripter = PasswordEncripterBuilder.Build();
         var WriteRepository = UserWriteOnlyRepositoryBuilder.Build();
         var unitOfWork = UnitOfWorkBuilder.Build();
         var TokenGeneretor = JJwtTokenGeneratorBuilder.Build();
-        var readRepository = new UserReadOnlyRepositoryBuilder().Build();
+        var readRepository = new UserReadOlnlyRepositorioBuider();
 
-        return new RegisterUserUseCase(mapper, passwordEncripter, readRepository, WriteRepository, unitOfWork, TokenGeneretor);
+        if(string.IsNullOrWhiteSpace(email) == false)
+        {
+            readRepository.ExistsByEmail(email);
+        }
+
+        return new RegisterUserUseCase(mapper, passwordEncripter, readRepository.Build(), WriteRepository, unitOfWork, TokenGeneretor);
     }
 }

@@ -1,4 +1,6 @@
-﻿using Financas.Domain.Repositorios.User;
+﻿using Financas.Domain.Entidades;
+using Financas.Domain.Repositorios.User;
+using Moq;
 
 namespace CommonTestUtilities.Repositorios;
 public class UserReadOlnlyRepositorioBuider
@@ -8,6 +10,18 @@ public class UserReadOlnlyRepositorioBuider
     public UserReadOlnlyRepositorioBuider()
     {
         _repository = new Moq.Mock<IUserReadOnlyRepository>();
+    }
+
+    public void ExistsByEmail(string email)
+    {
+        _repository.Setup(userReadonly => userReadonly.ExistsByEmail(email)).ReturnsAsync(true);
+    }
+
+    public UserReadOlnlyRepositorioBuider GetUSerByEmail(User user)
+    {
+        _repository.Setup(userReadonly => userReadonly.GetUserByEmai(user.Email)).ReturnsAsync(user);
+
+        return this;
     }
 
     public IUserReadOnlyRepository Build() => _repository.Object;
