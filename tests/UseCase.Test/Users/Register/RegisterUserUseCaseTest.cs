@@ -42,7 +42,7 @@ public class RegisterUserUseCaseTest
     private RegisterUserUseCase CreateUseCase(string? email = null)
     {
         var mapper = MapperBuilder.Build();
-        var passwordEncripter = PasswordEncripterBuilder.Build();
+        var passwordEncripter = new PasswordEncripterBuilder().Build();
         var WriteRepository = UserWriteOnlyRepositoryBuilder.Build();
         var unitOfWork = UnitOfWorkBuilder.Build();
         var TokenGeneretor = JJwtTokenGeneratorBuilder.Build();
