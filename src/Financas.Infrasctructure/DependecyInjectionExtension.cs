@@ -6,6 +6,7 @@ using Financas.Domain.Security.Tokens;
 using Financas.Infrasctructure.DataAccess;
 using Financas.Infrasctructure.DataAccess.Repositorios;
 using Financas.Infrasctructure.DataAccess.Repositorios.User;
+using Financas.Infrasctructure.Extensions;
 using Financas.Infrasctructure.Security.Cryptography;
 using Financas.Infrasctructure.Security.Tokens;
 using Microsoft.EntityFrameworkCore;
@@ -17,11 +18,17 @@ public static class DependecyInjectionExtension
 {
     public static void AddInfrasctructureServices(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddScoped<IPassowordEncripter, Crytptography>();
+
         AddDbContext(services, configuration);
         AddToken(services, configuration);
         AddRepositorios(services);
 
-        services.AddScoped<IPassowordEncripter, Crytptography>();
+        if (configuration.IsTesteEnvironment() == false)
+        {
+            AddDbContext(services, configuration);
+        }
+            
     }
     private static void AddToken(IServiceCollection services, IConfiguration configuration)
     {
@@ -42,11 +49,10 @@ public static class DependecyInjectionExtension
     }
     private static void AddDbContext(this IServiceCollection services, IConfiguration configuration)
     {
-
+        
         var connectionString = configuration.GetConnectionString("conexaoBanco"); ;
 
-        var version = new Version(8, 0, 44);
-        var serverVersion = new MySqlServerVersion(version);
+        var serverVersion = ServerVersion.AutoDetect(connectionString);
 
         services.AddDbContext<FinancasDbContexto>(config => config.UseMySql(connectionString, serverVersion));
     }

@@ -1,10 +1,10 @@
 using Financas.Application;
 using Financas.filters;
 using Financas.Infrasctructure;
+using Financas.Infrasctructure.Extensions;
 using Financas.Infrasctructure.Migrations;
 using Financas.Middleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
@@ -87,7 +87,10 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-await MigrateDatabase();
+if(builder.Configuration.IsTesteEnvironment() == false)
+{
+    await MigrateDatabase();
+}
 
 app.Run();
 
