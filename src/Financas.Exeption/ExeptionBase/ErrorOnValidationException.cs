@@ -6,7 +6,7 @@ public class ErrorOnValidationException : FinancasExeption
 
     private readonly List<string> _errors;
 
-    public override int StatusCode => (int)HttpStatusCode.BadGateway;
+    public override int StatusCode => (int)HttpStatusCode.BadRequest;
 
     public ErrorOnValidationException(List<string> errorMessages) : base(string.Empty)
     {

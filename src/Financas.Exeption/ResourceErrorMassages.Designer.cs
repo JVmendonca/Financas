@@ -124,7 +124,7 @@ namespace Financas.Exeption {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to O nome está vazio.
+        ///   Looks up a localized string similar to O nome não pode está vazio.
         /// </summary>
         public static string NOME_VAZIO {
             get {

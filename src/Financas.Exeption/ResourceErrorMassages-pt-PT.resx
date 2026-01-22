@@ -126,6 +126,9 @@
   <data name="ERRO_DESCONHECIDO" xml:space="preserve">
     <value>erro desconhecido</value>
   </data>
+  <data name="NOME_VAZIO" xml:space="preserve">
+    <value>O nome nao pode estas vazio</value>
+  </data>
   <data name="TIPO_PAGAMENTO_INVALIDO" xml:space="preserve">
     <value>Tipo De Pagamento Invalido</value>
   </data>

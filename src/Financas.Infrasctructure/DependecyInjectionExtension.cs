@@ -20,7 +20,6 @@ public static class DependecyInjectionExtension
     {
         services.AddScoped<IPassowordEncripter, Crytptography>();
 
-        AddDbContext(services, configuration);
         AddToken(services, configuration);
         AddRepositorios(services);
 

@@ -88,6 +88,15 @@ namespace Financas.Exeption {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to O nome nao pode estas vazio.
+        /// </summary>
+        public static string NOME_VAZIO {
+            get {
+                return ResourceManager.GetString("NOME_VAZIO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tipo De Pagamento Invalido.
         /// </summary>
         public static string TIPO_PAGAMENTO_INVALIDO {
