@@ -1,9 +1,11 @@
 using Financas.Application;
+using Financas.Domain.Security.Tokens;
 using Financas.filters;
 using Financas.Infrasctructure;
 using Financas.Infrasctructure.Extensions;
 using Financas.Infrasctructure.Migrations;
 using Financas.Middleware;
+using Financas.Token;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -52,6 +54,10 @@ builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)))
 
 builder.Services.AddInfrasctructureServices(builder.Configuration);
 builder.Services.AddApplicationDependecies();
+
+builder.Services.AddScoped<ITokenProvider, httpContexttokenValue>();
+
+builder.Services.AddHttpContextAccessor();
 
 var signingKey = builder.Configuration.GetValue<string>("Settings:Jwt:SigningKey");
 

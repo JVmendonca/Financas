@@ -3,12 +3,14 @@ using Financas.Domain.Repositorios.Despesas;
 using Financas.Domain.Repositorios.User;
 using Financas.Domain.Security.Cryptography;
 using Financas.Domain.Security.Tokens;
+using Financas.Domain.Services.LoggedUser;
 using Financas.Infrasctructure.DataAccess;
 using Financas.Infrasctructure.DataAccess.Repositorios;
 using Financas.Infrasctructure.DataAccess.Repositorios.User;
 using Financas.Infrasctructure.Extensions;
 using Financas.Infrasctructure.Security.Cryptography;
 using Financas.Infrasctructure.Security.Tokens;
+using Financas.Infrasctructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,9 +21,10 @@ public static class DependecyInjectionExtension
     public static void AddInfrasctructureServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<IPassowordEncripter, Crytptography>();
+        services.AddScoped<ILoggedUser, LoggedUser>();
 
-        AddToken(services, configuration);
         AddRepositorios(services);
+        AddToken(services, configuration);
 
         if (configuration.IsTesteEnvironment() == false)
         {

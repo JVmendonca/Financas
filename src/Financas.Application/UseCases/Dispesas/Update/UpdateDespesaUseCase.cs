@@ -2,6 +2,7 @@
 using Financas.Communication.Request;
 using Financas.Domain.Repositorios;
 using Financas.Domain.Repositorios.Despesas;
+using Financas.Domain.Services.LoggedUser;
 using Financas.Exeption.ExeptionBase;
 
 namespace Financas.Application.UseCases.Dispesas.Update;
@@ -10,21 +11,26 @@ public class UpdateDespesaUseCase : IUpdateDespesaUseCase
    private readonly IMapper _mapper;
    private readonly IUnitOfWork _unitOfWork;
    private readonly IDespesasUpdateOnlyRepositorio _repositorio;
+   private readonly ILoggedUser _loggedUser;
 
-    public UpdateDespesaUseCase(IMapper mapper, IUnitOfWork unitOfWork, IDespesasUpdateOnlyRepositorio repositorio)
+    public UpdateDespesaUseCase(IMapper mapper, IUnitOfWork unitOfWork, IDespesasUpdateOnlyRepositorio repositorio, ILoggedUser loggedUser)
     {
           _mapper = mapper;
           _unitOfWork = unitOfWork; 
           _repositorio = repositorio;
+          _loggedUser = loggedUser;
     }
 
     public async Task Execute(long id, RequestDispesaJson request)
     {
         Validate(request);
 
-        var despesa = await _repositorio.GetById(id);
+        var loggedUser = await _loggedUser.Get();
 
-        if(despesa is null)
+        var despesa = await _repositorio.GetById(loggedUser, id);
+
+
+        if (despesa is null)
         {
             throw new NotFoundExeption($"Despesa com id {id} não encontrada.");
         }

@@ -8,7 +8,6 @@ using Financas.Application.UseCases.Dispesas.Reports.Pdf;
 using Financas.Application.UseCases.Dispesas.Update;
 using Financas.Application.UseCases.Login;
 using Financas.Application.UseCases.User.Register;
-using Financas.Domain.Security.Tokens;
 using Microsoft.Extensions.DependencyInjection;
 
 

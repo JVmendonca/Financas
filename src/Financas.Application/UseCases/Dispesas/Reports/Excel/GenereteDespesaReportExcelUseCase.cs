@@ -5,21 +5,27 @@ using Financas.Domain.Entidades;
 using Financas.Domain.Extensions;
 using Financas.Domain.Reports;
 using Financas.Domain.Repositorios.Despesas;
+using Financas.Domain.Services.LoggedUser;
 
 namespace Financas.Application.UseCases.Dispesas.Reports.Excel;
 public class GenereteDespesaReportExcelUseCase : IGenereteDespesaReportExcelUseCase
 {
     private const string CURRENCY_SYMBOL = "R$";
-    private readonly IDespesasReadOnlyRepositorio _repositorio;
 
-    public GenereteDespesaReportExcelUseCase(IDespesasReadOnlyRepositorio repositorio)
+    private readonly IDespesasReadOnlyRepositorio _repositorio;
+    private readonly ILoggedUser _loggedUser;
+
+    public GenereteDespesaReportExcelUseCase(IDespesasReadOnlyRepositorio repositorio, ILoggedUser loggedUser)
     {
         _repositorio = repositorio;
+        _loggedUser = loggedUser;
     }
 
     public async Task<byte[]> Execute(DateOnly mes)
     {
-        var despesas = await _repositorio.FilterByMonth(mes);
+        var loggedUser = await _loggedUser.Get();
+
+        var despesas = await _repositorio.FilterByMonth(loggedUser,mes);
         if (despesas.Count == 0)
         {
             return [];
@@ -27,7 +33,7 @@ public class GenereteDespesaReportExcelUseCase : IGenereteDespesaReportExcelUseC
 
         using var workbook = new XLWorkbook();
 
-        workbook.Author = "Joao Vitor";
+        workbook.Author = loggedUser.Nome;
         workbook.Style.Font.FontSize = 12;
         workbook.Style.Font.FontName = "Times New Roman";
 

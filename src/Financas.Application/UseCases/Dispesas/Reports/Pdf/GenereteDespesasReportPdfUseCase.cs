@@ -3,6 +3,7 @@ using Financas.Application.UseCases.Dispesas.Reports.Pdf.Fonts;
 using Financas.Domain.Extensions;
 using Financas.Domain.Reports;
 using Financas.Domain.Repositorios.Despesas;
+using Financas.Domain.Services.LoggedUser;
 using MigraDoc.DocumentObjectModel;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
@@ -14,28 +15,33 @@ public class GenereteDespesasReportPdfUseCase : IGenereteDespesasReportPdfUseCas
 {
     private const string CURRENCY_SYMBOL = "R$";
     private const int HEIGHT_ROW_DESPESA = 25;
-    private readonly IDespesasReadOnlyRepositorio _repositorio;
 
-    public GenereteDespesasReportPdfUseCase(IDespesasReadOnlyRepositorio repositorio)
+    private readonly IDespesasReadOnlyRepositorio _repositorio;
+    private readonly ILoggedUser _loggedUser;
+
+    public GenereteDespesasReportPdfUseCase(IDespesasReadOnlyRepositorio repositorio, ILoggedUser loggedUser)
     {
         _repositorio = repositorio;
+        _loggedUser = loggedUser;
 
         GlobalFontSettings.FontResolver = new DespesasReportFontResolver();
     }
 
     public async Task<byte[]> Execute(DateOnly mes)
     {
-        var despesas = await _repositorio.FilterByMonth(mes);
+        var loggedUser = await _loggedUser.Get();
+
+        var despesas = await _repositorio.FilterByMonth(loggedUser, mes);
         if (despesas.Count == 0)
         {
             return [];
         }
 
-        var document = CreateDocument(mes);
+        var document = CreateDocument(loggedUser.Nome,mes);
         var page = CreatePage(document);
 
 
-        CreateHeaderProfilePhotoAndName(page);
+        CreateHeaderProfilePhotoAndName(loggedUser.Nome, page);
 
         var total_despesas = despesas.Sum(despesa => despesa.Valor);
         CreateTotalSpentSection(page, mes, total_despesas);
@@ -89,12 +95,12 @@ public class GenereteDespesasReportPdfUseCase : IGenereteDespesasReportPdfUseCas
     }
 
 
-    private Document CreateDocument(DateOnly mes)
+    private Document CreateDocument(string author,DateOnly mes)
     {
         var document = new Document();
 
         document.Info.Title = $"{ResourceReportGenerationMessages.DESPESA_PARA} {mes:Y}";
-        document.Info.Author = "João Vitor";
+        document.Info.Author = author;
 
         var style = document.Styles["Normal"];
         if (style != null)
@@ -119,7 +125,7 @@ public class GenereteDespesasReportPdfUseCase : IGenereteDespesasReportPdfUseCas
         return section;
     }
 
-    private void CreateHeaderProfilePhotoAndName(Section page) 
+    private void CreateHeaderProfilePhotoAndName(string name,Section page) 
     {
         var table = page.AddTable();
         table.AddColumn();
@@ -134,7 +140,7 @@ public class GenereteDespesasReportPdfUseCase : IGenereteDespesasReportPdfUseCas
 
         var image = row.Cells[0].AddImage(pathFile);
 
-        row.Cells[1].AddParagraph("Olá, João Vitor");
+        row.Cells[1].AddParagraph($"Olá, {name}");
         row.Cells[1].Format.Font = new Font { Name = FontHelper.RALEWAY_BLACK, Size = 16 };
         row.Cells[1].VerticalAlignment = MigraDoc.DocumentObjectModel.Tables.VerticalAlignment.Center;
     }
@@ -152,7 +158,7 @@ public class GenereteDespesasReportPdfUseCase : IGenereteDespesasReportPdfUseCas
         paragrafo.AddLineBreak();
 
         
-        paragrafo.AddFormattedText($"{total_despesas} {CURRENCY_SYMBOL}", new Font { Name = FontHelper.WORKSANS_BLACK, Size = 50 });
+        paragrafo.AddFormattedText($"{total_despesas:f2} {CURRENCY_SYMBOL}", new Font { Name = FontHelper.WORKSANS_BLACK, Size = 50 });
     }
 
     private Table CreateDespesaTable(Section page)
@@ -194,7 +200,7 @@ public class GenereteDespesasReportPdfUseCase : IGenereteDespesasReportPdfUseCas
 
     private void AddAmoutForDespesa(Cell cell, decimal valor)
     {
-        cell.AddParagraph($" - {CURRENCY_SYMBOL} {valor}");
+        cell.AddParagraph($" - {CURRENCY_SYMBOL} {valor:f2}");
         cell.Format.Font = new Font { Name = FontHelper.WORKSANS_REGULAR, Size = 12, Color = ColorsHelper.BLACK };
         cell.Shading.Color = ColorsHelper.GREEM_DARK;
         cell.VerticalAlignment = VerticalAlignment.Center;

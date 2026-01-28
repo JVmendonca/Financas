@@ -23,11 +23,7 @@ public class DoLoginUseCase : IDoLoginUseCase
 
     public async Task<ResponseRegisteredUserJson> Execute(RequestLoginJson request)
     {
-        var user = await _repository.GetUserByEmai(request.Email);
-        if(user is null)
-        {
-            throw new InavalidLoginExeception();
-        }
+        var user = await _repository.GetUserByEmai(request.Email) ?? throw new InavalidLoginExeception();
 
         var passwordMatch =  _passowordEncripter.Verify(request.Senha, user.Senha);
 

@@ -1,11 +1,14 @@
 ﻿using Financas.Application.UseCases.Dispesas.Reports.Excel;
 using Financas.Application.UseCases.Dispesas.Reports.Pdf;
+using Financas.Domain.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 
 namespace Financas.Controllers;
 [Route("api/[controller]")]
 [ApiController]
+[Authorize(Roles = Regras.ADMIN )]
 public class ReportController : ControllerBase
 {
     [HttpGet("excel")]

@@ -1,5 +1,6 @@
 ﻿using Financas.Domain.Entidades;
 using Financas.Domain.Repositorios.Despesas;
+using Financas.Infrasctructure.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace Financas.Infrasctructure.DataAccess.Repositorios;
@@ -15,28 +16,26 @@ internal class DispesasRepositorio : IDespesasReadOnlyRepositorio, IDespesasWrit
         _dbContext.Dispesas.Add(dispesa);
     }
 
-    public async Task<bool> Delete(long id)
+    public async Task Delete(long id)
     {
-        var result = await _dbContext.Dispesas.FirstOrDefaultAsync(d => d.Id == id);
-        if (result == null)
-        {
-            return false;
-        }
-        _dbContext.Dispesas.Remove(result);
-        return true;
+        var result = await _dbContext.Dispesas.FindAsync(id);
+        
+        _dbContext.Dispesas.Remove(result!);
     }
-    public async Task<List<Dispesa>> GetAll()
+    public async Task<List<Dispesa>> GetAll(Domain.Entidades.User user)
     {
-       return await _dbContext.Dispesas.AsNoTracking().ToListAsync();
+       return await _dbContext.Dispesas.AsNoTracking().Where(despesa => despesa.UserId == user.Id).ToListAsync();
     }
 
-    async Task<Dispesa?> IDespesasReadOnlyRepositorio.GetById(long id)
+    async Task<Dispesa?> IDespesasReadOnlyRepositorio.GetById(Domain.Entidades.User user, long id)
     {
-        return await _dbContext.Dispesas.AsNoTracking().FirstOrDefaultAsync(despesa => despesa.Id == id);
+        return await _dbContext.Dispesas
+            .AsNoTracking()
+            .FirstOrDefaultAsync(despesa => despesa.Id == id && despesa.UserId == user.Id);
     }
-    async Task<Dispesa?> IDespesasUpdateOnlyRepositorio.GetById(long id)
+    async Task<Dispesa?> IDespesasUpdateOnlyRepositorio.GetById(Domain.Entidades.User user,long id)
     {
-        return await _dbContext.Dispesas.FirstOrDefaultAsync(despesa => despesa.Id == id);
+        return await _dbContext.Dispesas.FirstOrDefaultAsync(despesa => despesa.Id == id && despesa.UserId == user.Id);
     }
 
     public void Update(Dispesa dispesa)
@@ -44,7 +43,7 @@ internal class DispesasRepositorio : IDespesasReadOnlyRepositorio, IDespesasWrit
         _dbContext.Dispesas.Update(dispesa);
     }
 
-    public async Task<List<Dispesa>> FilterByMonth(DateOnly date)
+    public async Task<List<Dispesa>> FilterByMonth(Domain.Entidades.User user, DateOnly date)
     {
         var startdate = new DateTime(year: date.Year, month: date.Month, day: 1).Date;
 
@@ -54,8 +53,9 @@ internal class DispesasRepositorio : IDespesasReadOnlyRepositorio, IDespesasWrit
         return await _dbContext
             .Dispesas
             .AsNoTracking()
-            .Where(d => d.Data >= startdate && d.Data <= EndDate)
+            .Where(d => d.UserId == user.Id && d.Data >= startdate && d.Data <= EndDate)
             .OrderBy(d => d.Data)
+            .ThenBy(d => d.Titulo)
             .ToListAsync();
     }
 }

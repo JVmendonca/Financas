@@ -1,5 +1,6 @@
 ﻿using CommonTestUtilities.Entites;
 using Financas.Domain.Security.Cryptography;
+using Financas.Domain.Security.Tokens;
 using Financas.Infrasctructure.DataAccess;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -11,6 +12,7 @@ public class CustomWepApplicationFactory : WebApplicationFactory<Program>
 {
     private Financas.Domain.Entidades.User _user;
     private string _password;
+    private string _token;
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
@@ -29,13 +31,18 @@ public class CustomWepApplicationFactory : WebApplicationFactory<Program>
                 var dbContext = scope.ServiceProvider.GetRequiredService<FinancasDbContexto>();
                 var passowordEncripter = scope.ServiceProvider.GetRequiredService<IPassowordEncripter>();
 
+
                 StartDataBase(dbContext, passowordEncripter);
+
+                var tokenGenerator = scope.ServiceProvider.GetRequiredService<IAccesTokenGeneretor>();
+                _token = tokenGenerator.Generate(_user);
             });
     }
 
     public string GetEmail() => _user.Email;
     public string GetName() => _user.Nome;
     public string GetSenha() => _password;
+    public string GetToken() => _token;
 
     private void StartDataBase(FinancasDbContexto dbContexto, IPassowordEncripter passowordEncripter)
     {
