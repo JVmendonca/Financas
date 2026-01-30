@@ -1,27 +1,21 @@
 ﻿using CommonTestUtilities.Requests;
 using Financas.Exeption;
 using FluentAssertions;
-using Microsoft.AspNetCore.Mvc.Testing;
 using System.Globalization;
 using System.Net;
-using System.Net.Http.Headers;
-using System.Net.Http.Json;
 using System.Text.Json;
 using WebApi.Test.InlineData;
 
 namespace WebApi.Test.Despesas.Register;
-public class RegisterDespesasTest : IClassFixture<CustomWepApplicationFactory>
+public class RegisterDespesasTest : FinancasClassFixture
 {
     private const string METHOD = "api/Dispesas";
 
-    private readonly HttpClient _httpClient;
     private readonly string _token;
 
-    public RegisterDespesasTest(CustomWepApplicationFactory factory)
+    public RegisterDespesasTest(CustomWepApplicationFactory wepApplicationFactory) : base(wepApplicationFactory)
     {
-        _httpClient = factory.CreateClient();
-
-        _token = factory.GetToken();
+        _token = wepApplicationFactory.GetToken();
     }
 
     [Fact]
@@ -29,9 +23,8 @@ public class RegisterDespesasTest : IClassFixture<CustomWepApplicationFactory>
     {
         var request = RequestDispesaJsonBuilder.Build();
 
-        _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _token);
 
-        var result = await _httpClient.PostAsJsonAsync(METHOD, request);
+        var result = await DoPost(requestUri: METHOD, request: request, token: _token);
         
         result.StatusCode.Should().Be(HttpStatusCode.Created);
 
@@ -44,15 +37,12 @@ public class RegisterDespesasTest : IClassFixture<CustomWepApplicationFactory>
 
     [Theory]
     [ClassData(typeof(CultureInlineDataTest))]
-    public async Task Error_Title_Empty(string cultureInfo)
+    public async Task Error_Title_Empty(string culture)
     {
         var request = RequestDispesaJsonBuilder.Build();
         request.Titulo = string.Empty;
 
-        _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _token);
-        _httpClient.DefaultRequestHeaders.AcceptLanguage.Add(new StringWithQualityHeaderValue(cultureInfo));
-
-        var result = await _httpClient.PostAsJsonAsync(METHOD, request);
+        var result = await DoPost(requestUri: METHOD, request: request, token: _token, culture: culture);
 
         result.StatusCode.Should().Be(HttpStatusCode.BadRequest);
 
@@ -62,7 +52,7 @@ public class RegisterDespesasTest : IClassFixture<CustomWepApplicationFactory>
 
         var errors = response.RootElement.GetProperty("errorMessages").EnumerateArray();
 
-        var expectedMessage = ResourceErrorMassages.ResourceManager.GetString("TITULO_OBRIGATORIO", new CultureInfo(cultureInfo));
+        var expectedMessage = ResourceErrorMassages.ResourceManager.GetString("TITULO_OBRIGATORIO", new CultureInfo(culture));
         
         errors.Should().HaveCount(1).And.Contain(error => error.GetString()!.Equals(expectedMessage));
     }

@@ -8,7 +8,7 @@ public class RequestLoginJsonBuilder
     {
         return new Faker<RequestLoginJson>()
             .RuleFor(user => user.Email, faker => faker.Internet.Email())
-            .RuleFor(user => user.Senha, faker => faker.Internet.Password(prefix: "2Jj*"));
+            .RuleFor(user => user.Senha, faker => faker.Internet.Password(prefix: "24083066Jj*"));
           
     }
 }

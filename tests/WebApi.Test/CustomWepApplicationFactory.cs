@@ -1,4 +1,5 @@
 ﻿using CommonTestUtilities.Entites;
+using Financas.Domain.Entidades;
 using Financas.Domain.Security.Cryptography;
 using Financas.Domain.Security.Tokens;
 using Financas.Infrasctructure.DataAccess;
@@ -46,12 +47,25 @@ public class CustomWepApplicationFactory : WebApplicationFactory<Program>
 
     private void StartDataBase(FinancasDbContexto dbContexto, IPassowordEncripter passowordEncripter)
     {
+        AddUsers(dbContexto, passowordEncripter);
+        AddDespesas(dbContexto, _user);
+      
+        dbContexto.SaveChanges();
+    }
+    private void AddUsers(FinancasDbContexto dbContexto, IPassowordEncripter passowordEncripter)
+    {
         _user = UserBuild.Build();
         _password = _user.Senha;
+
         _user.Senha = passowordEncripter.Encrypt(_user.Senha);
 
         dbContexto.Users.Add(_user);
 
-        dbContexto.SaveChanges();
+    }
+    private void AddDespesas(FinancasDbContexto dbContexto, User user)
+    {
+        var despesa = DespesasBuilder.Build(user);
+
+        dbContexto.Dispesas.Add(despesa);
     }
 }

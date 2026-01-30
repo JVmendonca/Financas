@@ -27,10 +27,10 @@ public class RegisterUserUseCaseTest
     [Fact]
     public async Task Error_Nome_Empty()
     {
+        var useCase = CreateUseCase();
         var request = RequestRegisterUserJsonBuilder.Build();
         request.Nome = string.Empty;
 
-        var useCase = CreateUseCase(request.Email);
 
         var act = async () => await useCase.Execute(request);
 

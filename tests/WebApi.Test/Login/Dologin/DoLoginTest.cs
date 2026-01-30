@@ -4,24 +4,21 @@ using Financas.Exeption;
 using FluentAssertions;
 using System.Globalization;
 using System.Net;
-using System.Net.Http.Headers;
-using System.Net.Http.Json;
 using System.Text.Json;
 using WebApi.Test.InlineData;
 
 namespace WebApi.Test.Login.Dologin;
-public class DoLoginTest : IClassFixture<CustomWepApplicationFactory>
+public class DoLoginTest : FinancasClassFixture
 {
     private const string METHOD = "/api/Login";
 
-    private readonly HttpClient _httpClient;
+    
     private readonly string _email;
     private readonly string _nome;
     private readonly string _senha;
 
-    public DoLoginTest(CustomWepApplicationFactory wepApplicationFactory)
+    public DoLoginTest(CustomWepApplicationFactory wepApplicationFactory) : base(wepApplicationFactory)
     {
-        _httpClient = wepApplicationFactory.CreateClient();
         _email = wepApplicationFactory.GetEmail();
         _nome = wepApplicationFactory.GetName();
         _senha = wepApplicationFactory.GetSenha();
@@ -36,7 +33,7 @@ public class DoLoginTest : IClassFixture<CustomWepApplicationFactory>
             Senha = _senha
         };
 
-        var response = await _httpClient.PostAsJsonAsync(METHOD, request);
+        var response = await DoPost(requestUri : METHOD,request: request);
 
         response.StatusCode.Should().Be(HttpStatusCode.OK);
 
@@ -55,8 +52,8 @@ public class DoLoginTest : IClassFixture<CustomWepApplicationFactory>
     {
         var request = RequestLoginJsonBuilder.Build();
 
-        _httpClient.DefaultRequestHeaders.AcceptLanguage.Add(new StringWithQualityHeaderValue(culture));
-        var response = await _httpClient.PostAsJsonAsync(METHOD, request);
+        
+        var response = await DoPost(requestUri: METHOD, request: request, culture: culture);
 
         response.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
 

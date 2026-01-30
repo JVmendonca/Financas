@@ -3,19 +3,17 @@ using Financas.Exeption;
 using FluentAssertions;
 using System.Globalization;
 using System.Net;
-using System.Net.Http.Headers;
-using System.Net.Http.Json;
 using System.Text.Json;
 using WebApi.Test.InlineData;
 
 namespace WebApi.Test.Users.Register;
-public class RegisterUserTest : IClassFixture<CustomWepApplicationFactory>
+public class RegisterUserTest : FinancasClassFixture
 {
-
     private const string METHOD = "api/User";
+
     private readonly HttpClient _httpClient;
 
-    public RegisterUserTest(CustomWepApplicationFactory webApplicationFactory)
+    public RegisterUserTest(CustomWepApplicationFactory webApplicationFactory) : base(webApplicationFactory)
     {
         _httpClient = webApplicationFactory.CreateClient();
     }
@@ -25,7 +23,7 @@ public class RegisterUserTest : IClassFixture<CustomWepApplicationFactory>
     {
         var request = RequestRegisterUserJsonBuilder.Build();
        
-        var result = await _httpClient.PostAsJsonAsync(METHOD, request);
+        var result = await DoPost(METHOD, request);
 
         result.StatusCode.Should().Be(HttpStatusCode.Created);
 
@@ -39,14 +37,12 @@ public class RegisterUserTest : IClassFixture<CustomWepApplicationFactory>
 
     [Theory]
     [ClassData(typeof(CultureInlineDataTest))]
-    public async Task Error_Empty_Name(string cultereInfo) 
+    public async Task Error_Empty_Name(string culture) 
     {
         var request = RequestRegisterUserJsonBuilder.Build();
         request.Nome = string.Empty;
 
-        _httpClient.DefaultRequestHeaders.AcceptLanguage.Add(new StringWithQualityHeaderValue(cultereInfo));
-
-        var result = await _httpClient.PostAsJsonAsync(METHOD, request);
+        var result = await DoPost(requestUri: METHOD, request: request, culture: culture);
 
         result.StatusCode.Should().Be(HttpStatusCode.BadRequest);
 
@@ -56,7 +52,7 @@ public class RegisterUserTest : IClassFixture<CustomWepApplicationFactory>
 
         var erros = response.RootElement.GetProperty("errorMessages").EnumerateArray();
 
-        var expectedMessage = ResourceErrorMassages.ResourceManager.GetString("NOME_VAZIO", new CultureInfo(cultereInfo));
+        var expectedMessage = ResourceErrorMassages.ResourceManager.GetString("NOME_VAZIO", new CultureInfo(culture));
 
         erros.Should().HaveCount(1).And.Contain(error => error.GetString()!.Equals(expectedMessage));
 

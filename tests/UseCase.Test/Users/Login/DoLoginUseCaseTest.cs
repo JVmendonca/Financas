@@ -4,7 +4,6 @@ using CommonTestUtilities.Repositorios;
 using CommonTestUtilities.Requests;
 using CommonTestUtilities.Token;
 using Financas.Application.UseCases.Login;
-using Financas.Domain.Entidades;
 using Financas.Exeption;
 using Financas.Exeption.ExeptionBase;
 using FluentAssertions;
