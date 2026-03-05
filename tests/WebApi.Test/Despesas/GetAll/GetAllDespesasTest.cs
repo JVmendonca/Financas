@@ -10,7 +10,7 @@ public class GetAllDespesasTest : FinancasClassFixture
 
     public GetAllDespesasTest(CustomWepApplicationFactory wepApplicationFactory) : base(wepApplicationFactory)
     {
-        _token = wepApplicationFactory.GetToken();
+        _token = wepApplicationFactory.User_Team_Member.GetToken();
     }
 
     [Fact]

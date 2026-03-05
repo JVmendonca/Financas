@@ -14,7 +14,8 @@ public class FinancasClassFixture : IClassFixture<CustomWepApplicationFactory>
         _httpClient = webApplicationFactory.CreateClient();
     }
 
-    protected async Task<HttpResponseMessage> DoPost(string requestUri,
+    protected async Task<HttpResponseMessage> DoPost(
+        string requestUri,
         object request,
         string token = "",
         string culture = "pt-BR")
@@ -23,6 +24,17 @@ public class FinancasClassFixture : IClassFixture<CustomWepApplicationFactory>
         ChangeRequestCulture(culture);
 
         return await _httpClient.PostAsJsonAsync(requestUri, request);
+    }
+    protected async Task<HttpResponseMessage> DoPut(
+        string requestUri,
+        object request,
+        string token,
+        string culture = "pt-BR")
+    {
+        AuthorizeRequest(token);
+        ChangeRequestCulture(culture);
+
+        return await _httpClient.PutAsJsonAsync(requestUri, request);
     }
 
     protected async Task<HttpResponseMessage> DoGet(
@@ -34,6 +46,16 @@ public class FinancasClassFixture : IClassFixture<CustomWepApplicationFactory>
         ChangeRequestCulture(culture);
 
         return await _httpClient.GetAsync(requestUri);
+    }
+    protected async Task<HttpResponseMessage> DoDelete(
+        string requestUri,
+        string token,
+        string culture = "pt-BR")
+    {
+        AuthorizeRequest(token);
+        ChangeRequestCulture(culture);
+
+        return await _httpClient.DeleteAsync(requestUri);
     }
 
     private void AuthorizeRequest(string token)

@@ -19,5 +19,19 @@ public class DespesasReadOnlyRepositorioBuilder
         return this;
     }
 
+    public DespesasReadOnlyRepositorioBuilder GetById(User user, Dispesa? despesa)
+    {
+        if (despesa is not null)
+            _repository.Setup(repository => repository.GetById(user, despesa.Id)).ReturnsAsync(despesa);
+
+        return this;
+    }
+
+    public DespesasReadOnlyRepositorioBuilder FilterByMonth(User user, List<Dispesa> dispesas)
+    {
+        _repository.Setup(repository => repository.FilterByMonth(user, It.IsAny<DateOnly>())).ReturnsAsync(dispesas);
+        return this;
+    }
+
     public IDespesasReadOnlyRepositorio Build() => _repository.Object;
 }

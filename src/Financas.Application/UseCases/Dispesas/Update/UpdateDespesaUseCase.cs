@@ -3,6 +3,7 @@ using Financas.Communication.Request;
 using Financas.Domain.Repositorios;
 using Financas.Domain.Repositorios.Despesas;
 using Financas.Domain.Services.LoggedUser;
+using Financas.Exeption;
 using Financas.Exeption.ExeptionBase;
 
 namespace Financas.Application.UseCases.Dispesas.Update;
@@ -32,7 +33,7 @@ public class UpdateDespesaUseCase : IUpdateDespesaUseCase
 
         if (despesa is null)
         {
-            throw new NotFoundExeption($"Despesa com id {id} não encontrada.");
+            throw new NotFoundExeption(ResourceErrorMassages.DESPESA_NAO_ENCONTRADA);
         }
         
         _mapper.Map(request, despesa);

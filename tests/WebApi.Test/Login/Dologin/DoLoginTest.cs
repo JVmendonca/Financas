@@ -19,9 +19,9 @@ public class DoLoginTest : FinancasClassFixture
 
     public DoLoginTest(CustomWepApplicationFactory wepApplicationFactory) : base(wepApplicationFactory)
     {
-        _email = wepApplicationFactory.GetEmail();
-        _nome = wepApplicationFactory.GetName();
-        _senha = wepApplicationFactory.GetSenha();
+        _email = wepApplicationFactory.User_Team_Member.GetEmail();
+        _nome = wepApplicationFactory.User_Team_Member.GetName();
+        _senha = wepApplicationFactory.User_Team_Member.GetSenha();
     }
 
     [Fact]

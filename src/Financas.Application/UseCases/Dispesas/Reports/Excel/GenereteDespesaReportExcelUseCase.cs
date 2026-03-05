@@ -26,10 +26,7 @@ public class GenereteDespesaReportExcelUseCase : IGenereteDespesaReportExcelUseC
         var loggedUser = await _loggedUser.Get();
 
         var despesas = await _repositorio.FilterByMonth(loggedUser,mes);
-        if (despesas.Count == 0)
-        {
-            return [];
-        }
+       
 
         using var workbook = new XLWorkbook();
 

@@ -15,7 +15,7 @@ public class RegisterDespesasTest : FinancasClassFixture
 
     public RegisterDespesasTest(CustomWepApplicationFactory wepApplicationFactory) : base(wepApplicationFactory)
     {
-        _token = wepApplicationFactory.GetToken();
+        _token = wepApplicationFactory.User_Team_Member.GetToken();
     }
 
     [Fact]

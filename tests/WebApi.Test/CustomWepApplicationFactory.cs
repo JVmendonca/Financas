@@ -1,5 +1,6 @@
 ﻿using CommonTestUtilities.Entites;
 using Financas.Domain.Entidades;
+using Financas.Domain.Enums;
 using Financas.Domain.Security.Cryptography;
 using Financas.Domain.Security.Tokens;
 using Financas.Infrasctructure.DataAccess;
@@ -7,13 +8,16 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using WebApi.Test.Resorces;
 
 namespace WebApi.Test;
 public class CustomWepApplicationFactory : WebApplicationFactory<Program>
 {
-    private Financas.Domain.Entidades.User _user;
-    private string _password;
-    private string _token;
+
+    public DespesasIndentifyManeger Despesa_User_Admin { get; private set; } = default!;
+    public DespesasIndentifyManeger Despesa_Member_Team { get; private set; } = default!;
+    public UserIndentityManager User_Team_Member {  get; private set; } = default!;
+    public UserIndentityManager User_Admin {  get; private set; } = default!;
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
@@ -31,41 +35,80 @@ public class CustomWepApplicationFactory : WebApplicationFactory<Program>
                 var scope = services.BuildServiceProvider().CreateScope();
                 var dbContext = scope.ServiceProvider.GetRequiredService<FinancasDbContexto>();
                 var passowordEncripter = scope.ServiceProvider.GetRequiredService<IPassowordEncripter>();
+                var accesTokenGeneretor = scope.ServiceProvider.GetRequiredService<IAccesTokenGeneretor>();
 
 
-                StartDataBase(dbContext, passowordEncripter);
-
-                var tokenGenerator = scope.ServiceProvider.GetRequiredService<IAccesTokenGeneretor>();
-                _token = tokenGenerator.Generate(_user);
+                StartDataBase(dbContext, passowordEncripter, accesTokenGeneretor);
             });
     }
 
-    public string GetEmail() => _user.Email;
-    public string GetName() => _user.Nome;
-    public string GetSenha() => _password;
-    public string GetToken() => _token;
 
-    private void StartDataBase(FinancasDbContexto dbContexto, IPassowordEncripter passowordEncripter)
+    
+
+    private void StartDataBase(FinancasDbContexto dbContexto,
+        IPassowordEncripter passowordEncripter,
+        IAccesTokenGeneretor accesTokenGeneretor)
     {
-        AddUsers(dbContexto, passowordEncripter);
-        AddDespesas(dbContexto, _user);
-      
+        var user_TeamMember = AddUserTeamMember(dbContexto, passowordEncripter, accesTokenGeneretor);
+        var despesaTeamMember = AddDespesas(dbContexto, user_TeamMember, despesaId: 1);
+        Despesa_Member_Team = new DespesasIndentifyManeger(despesaTeamMember);
+
+        var user_Admin = AddUserAdmin(dbContexto, passowordEncripter, accesTokenGeneretor);
+        var despesaUserAdmin = AddDespesas(dbContexto, user_Admin, despesaId: 2);
+        Despesa_User_Admin = new DespesasIndentifyManeger(despesaUserAdmin);
+
+
         dbContexto.SaveChanges();
     }
-    private void AddUsers(FinancasDbContexto dbContexto, IPassowordEncripter passowordEncripter)
+
+    private User AddUserTeamMember(FinancasDbContexto dbContexto,
+        IPassowordEncripter passowordEncripter, 
+        IAccesTokenGeneretor accesTokenGeneretor)
     {
-        _user = UserBuild.Build();
-        _password = _user.Senha;
+        var user = UserBuild.Build();
+        user.Id = 1;
 
-        _user.Senha = passowordEncripter.Encrypt(_user.Senha);
+        var password = user.Senha;
 
-        dbContexto.Users.Add(_user);
+        user.Senha = passowordEncripter.Encrypt(user.Senha);
+
+        dbContexto.Users.Add(user);
+
+        var token = accesTokenGeneretor.Generate(user);
+
+        User_Team_Member = new UserIndentityManager(user, password, token );
+
+        return user;
 
     }
-    private void AddDespesas(FinancasDbContexto dbContexto, User user)
+
+    private User AddUserAdmin(FinancasDbContexto dbContexto,
+        IPassowordEncripter passowordEncripter, 
+        IAccesTokenGeneretor accesTokenGeneretor)
+    {
+        var user = UserBuild.Build(Regras.ADMIN);
+        user.Id = 2;
+
+        var password = user.Senha;
+
+        user.Senha = passowordEncripter.Encrypt(user.Senha);
+
+        dbContexto.Users.Add(user);
+
+        var token = accesTokenGeneretor.Generate(user);
+
+        User_Admin = new UserIndentityManager(user, password, token );
+
+        return user;
+
+    }
+    private Dispesa AddDespesas(FinancasDbContexto dbContexto, User user, long despesaId)
     {
         var despesa = DespesasBuilder.Build(user);
+        despesa.Id = despesaId;
 
         dbContexto.Dispesas.Add(despesa);
+
+        return despesa;
     }
 }
