@@ -122,6 +122,14 @@ namespace Financas.Exeption {
                 return ResourceManager.GetString("ERRO_DESCONHECIDO", resourceCulture);
             }
         }
+        /// <summary>
+        ///   Looks up a localized string similar to erro desconhecido.
+        /// </summary>
+        public static string EMAIL_JA_EM_USO {
+            get {
+                return ResourceManager.GetString("ESSE EMAIL JA ESTA EM USO", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to O nome não pode está vazio.

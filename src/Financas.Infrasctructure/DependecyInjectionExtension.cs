@@ -42,12 +42,13 @@ public static class DependecyInjectionExtension
 
     private static void AddRepositorios(this IServiceCollection services)
     {
-        services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IDespesasReadOnlyRepositorio, DispesasRepositorio>();
         services.AddScoped<IDespesasWriteOnlyRepositorio, DispesasRepositorio>();
         services.AddScoped<IDespesasUpdateOnlyRepositorio, DispesasRepositorio>();
         services.AddScoped<IUserReadOnlyRepository, UserRepository>();
-        services.AddScoped<IUserWriteOnlyRepository, UserRepository>();
+        services.AddScoped<IUserWriteOnlyRepository, UserRepository>(); 
+        services.AddScoped<IUserUpdateOnlyRepository, UserRepository>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
     }
     private static void AddDbContext(this IServiceCollection services, IConfiguration configuration)
     {
