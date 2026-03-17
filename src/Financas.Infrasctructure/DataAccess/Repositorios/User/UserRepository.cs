@@ -16,6 +16,12 @@ internal class UserRepository : IUserReadOnlyRepository, IUserWriteOnlyRepositor
         await _dbContext.Users.AddAsync(user);
     }
 
+    public async Task Delete(Domain.Entidades.User user)
+    {
+        var UserToRemove = await _dbContext.Users.FindAsync(user.Id);
+        _dbContext.Users.Remove(UserToRemove!);
+    }
+
     public async Task<bool> ExistsByEmail(string email)
     {
         return await _dbContext.Users.AnyAsync(user => user.Email.Equals(email));

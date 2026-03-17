@@ -12,9 +12,11 @@ public class UpdateUserValidator : AbstractValidator<RequestUpdateUserJson>
             .WithMessage(ResourceErrorMassages.NOME_VAZIO);
         RuleFor(x => x.Email)
             .NotEmpty()
-            .WithMessage(ResourceErrorMassages.EMAIL_VAZIO)
+            .WithMessage(ResourceErrorMassages.EMAIL_VAZIO);
+
+        RuleFor(x => x.Email)
             .EmailAddress()
-            .When(x => !string.IsNullOrWhiteSpace(x.Email) == false, ApplyConditionTo.CurrentValidator)
-            .WithMessage(ResourceErrorMassages.EMAIL_INVALIDO);
+            .WithMessage(ResourceErrorMassages.EMAIL_INVALIDO)
+            .When(x => !string.IsNullOrWhiteSpace(x.Email));
     }
 }

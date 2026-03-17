@@ -7,7 +7,9 @@ using Financas.Application.UseCases.Dispesas.Reports.Excel;
 using Financas.Application.UseCases.Dispesas.Reports.Pdf;
 using Financas.Application.UseCases.Dispesas.Update;
 using Financas.Application.UseCases.Login;
+using Financas.Application.UseCases.User.Delete;
 using Financas.Application.UseCases.User.Get;
+using Financas.Application.UseCases.User.Password;
 using Financas.Application.UseCases.User.Register;
 using Financas.Application.UseCases.User.Update;
 using Microsoft.Extensions.DependencyInjection;
@@ -40,5 +42,7 @@ public static class DependecyInjectionExtension
         services.AddScoped<IDoLoginUseCase, DoLoginUseCase>();
         services.AddScoped<IGetUserUseCase, GetUserUseCase>();
         services.AddScoped<IUpdateUserUserCase, UpdateUserUserCase>();
+        services.AddScoped<IUpdatePasswordUseCase, UpdatePasswordUseCase>();
+        services.AddScoped<IDeleteProfileUseCase, DeleteProfileUseCase>();
     }
 }

@@ -1,4 +1,6 @@
-﻿using Financas.Application.UseCases.User.Get;
+﻿using Financas.Application.UseCases.User.Delete;
+using Financas.Application.UseCases.User.Get;
+using Financas.Application.UseCases.User.Password;
 using Financas.Application.UseCases.User.Register;
 using Financas.Application.UseCases.User.Update;
 using Financas.Communication.Request;
@@ -39,13 +41,37 @@ public class UserController : ControllerBase
     [Authorize]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
-
-    
     public async Task<IActionResult> UpdateProfile(
         [FromServices] IUpdateUserUserCase useCase,
         [FromBody] RequestUpdateUserJson request)
     {
         await useCase.Execute(request);
+
+        return NoContent();
+    }
+
+
+    [HttpPut("update-senha")]
+    [Authorize]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> UpdatePassword(
+        [FromServices] IUpdatePasswordUseCase useCase,
+        [FromBody] RequestUpdatePasswordJson request)
+    {
+        await useCase.Execute(request);
+
+        return NoContent();
+    }
+
+
+    [HttpDelete]
+    [Authorize]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> DeleteProfile(
+        [FromServices] IDeleteProfileUseCase useCase)
+    {
+        await useCase.Execute();
 
         return NoContent();
     }

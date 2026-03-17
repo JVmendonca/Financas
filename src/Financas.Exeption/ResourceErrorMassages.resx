@@ -153,4 +153,10 @@
   <data name="EMAIL_OU_SENHA_ERRADO" xml:space="preserve">
     <value>Email e/ou senha inavlidos</value>
   </data>
+  <data name="SENHA_DIFERENTE_DA_ATUAL" xml:space="preserve">
+    <value>A senha inserida é diferente da senha atual.</value>
+  </data>
+  <data name="EMAIL_JA_EM_USO" xml:space="preserve">
+    <value>Esse Email ja está em uso</value>
+  </data>
 </root>

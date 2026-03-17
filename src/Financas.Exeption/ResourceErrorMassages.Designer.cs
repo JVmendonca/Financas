@@ -88,6 +88,15 @@ namespace Financas.Exeption {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Esse Email ja está em uso.
+        /// </summary>
+        public static string EMAIL_JA_EM_USO {
+            get {
+                return ResourceManager.GetString("EMAIL_JA_EM_USO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Esse e-mail já esta sendo usado.
         /// </summary>
         public static string EMAIL_JA_EXISTE {
@@ -122,14 +131,6 @@ namespace Financas.Exeption {
                 return ResourceManager.GetString("ERRO_DESCONHECIDO", resourceCulture);
             }
         }
-        /// <summary>
-        ///   Looks up a localized string similar to erro desconhecido.
-        /// </summary>
-        public static string EMAIL_JA_EM_USO {
-            get {
-                return ResourceManager.GetString("ESSE EMAIL JA ESTA EM USO", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   Looks up a localized string similar to O nome não pode está vazio.
@@ -137,6 +138,15 @@ namespace Financas.Exeption {
         public static string NOME_VAZIO {
             get {
                 return ResourceManager.GetString("NOME_VAZIO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A senha inserida é diferente da senha atual..
+        /// </summary>
+        public static string SENHA_DIFERENTE_DA_ATUAL {
+            get {
+                return ResourceManager.GetString("SENHA_DIFERENTE_DA_ATUAL", resourceCulture);
             }
         }
         
