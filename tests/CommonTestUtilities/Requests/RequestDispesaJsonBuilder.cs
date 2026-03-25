@@ -9,9 +9,10 @@ public class RequestDispesaJsonBuilder
     {
         return new Faker<RequestDispesaJson>()
              .RuleFor(r => r.Titulo, f => f.Commerce.ProductName())
-             .RuleFor(r => r.Descricao, f => f.Lorem.Paragraph())
+             .RuleFor(r => r.Descricao, f => f.Commerce.ProductDescription())
              .RuleFor(r => r.Data, f => f.Date.Past())
+             .RuleFor(r => r.Pagamento, f => f.PickRandom<PaymentType>())
              .RuleFor(r => r.Valor, f => f.Random.Decimal(min: 1, max: 1000))
-             .RuleFor(r => r.Pagamento, f => f.PickRandom<PaymentType>());
+            .RuleFor(r => r.Tags, f => f.Make(1, () => f.PickRandom<Tag>()));
     }
 }

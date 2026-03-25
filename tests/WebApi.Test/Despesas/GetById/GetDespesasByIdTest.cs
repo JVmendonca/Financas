@@ -34,6 +34,7 @@ public class GetDespesasByIdTest : FinancasClassFixture
         response.RootElement.GetProperty("descricao").GetString().Should().NotBeNullOrWhiteSpace();
         response.RootElement.GetProperty("data").GetDateTime().Should().NotBeAfter(DateTime.Today);
         response.RootElement.GetProperty("valor").GetDecimal().Should().BeGreaterThan(0);
+        response.RootElement.GetProperty("tags").EnumerateArray().Should().NotBeNullOrEmpty();
         
         var paymantType = response.RootElement.GetProperty("pagamento").GetInt32();
         Enum.IsDefined(typeof(PaymentType), paymantType).Should().BeTrue();

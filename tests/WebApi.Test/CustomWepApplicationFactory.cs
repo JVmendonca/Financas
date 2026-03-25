@@ -50,11 +50,11 @@ public class CustomWepApplicationFactory : WebApplicationFactory<Program>
         IAccesTokenGeneretor accesTokenGeneretor)
     {
         var user_TeamMember = AddUserTeamMember(dbContexto, passowordEncripter, accesTokenGeneretor);
-        var despesaTeamMember = AddDespesas(dbContexto, user_TeamMember, despesaId: 1);
+        var despesaTeamMember = AddDespesas(dbContexto, user_TeamMember, despesaId: 1, tagId: 1);
         Despesa_Member_Team = new DespesasIndentifyManeger(despesaTeamMember);
 
         var user_Admin = AddUserAdmin(dbContexto, passowordEncripter, accesTokenGeneretor);
-        var despesaUserAdmin = AddDespesas(dbContexto, user_Admin, despesaId: 2);
+        var despesaUserAdmin = AddDespesas(dbContexto, user_Admin, despesaId: 2, tagId: 2);
         Despesa_User_Admin = new DespesasIndentifyManeger(despesaUserAdmin);
 
 
@@ -102,10 +102,16 @@ public class CustomWepApplicationFactory : WebApplicationFactory<Program>
         return user;
 
     }
-    private Dispesa AddDespesas(FinancasDbContexto dbContexto, User user, long despesaId)
+    private Dispesa AddDespesas(FinancasDbContexto dbContexto, User user, long despesaId, long tagId)
     {
         var despesa = DespesasBuilder.Build(user);
         despesa.Id = despesaId;
+
+        foreach(var tag in despesa.Tags)
+        {
+            tag.Id = tagId;
+            tag.DespesaId = despesaId;
+        }
 
         dbContexto.Dispesas.Add(despesa);
 

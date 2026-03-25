@@ -2,8 +2,8 @@
 using Financas.Application.UseCases.Dispesas;
 using Financas.Exeption;
 using FluentAssertions;
-namespace Validator.Tests.Dispesas.Register;
-public class RegisterDispensasValidatorTest
+namespace Validator.Tests.Dispesas;
+public class DespesaValidatorTests
 {
     [Fact]
     public void success()
@@ -73,6 +73,24 @@ public class RegisterDispensasValidatorTest
         reuslt.IsValid.Should().BeFalse();
         reuslt.Errors.Should().ContainSingle().And.Contain(e => e.ErrorMessage.Equals(ResourceErrorMassages.VALOR_DEVE_SER_MAIOR_ZERO));
         
+    }
+
+    [Fact]
+    public void Error_Tag_Invalid()
+    {
+        // Preparar
+        var validator = new DespensasValidator();
+        var request = RequestDispesaJsonBuilder.Build();
+        request.Tags.Add((Financas.Communication.Enuns.Tag)1000);
+        //request.Valor = 0;
+
+        // Agir
+        var reuslt = validator.Validate(request);
+
+        // Valida
+        reuslt.IsValid.Should().BeFalse();
+        reuslt.Errors.Should().ContainSingle().And.Contain(e => e.ErrorMessage.Equals(ResourceErrorMassages.TAG_NAO_VALIDA));
+
     }
 
 }

@@ -28,6 +28,7 @@ public class GetDespesasByIdUseCaseTest
         result.Data.Should().Be(despesa.Data);
         result.Valor.Should().Be(despesa.Valor);
         result.Pagamento.Should().Be((Financas.Communication.Enuns.PaymentType)despesa.Pagamento);
+        result.Tags.Should().NotBeNullOrEmpty().And.BeEquivalentTo(despesa.Tags.Select(t => t.Value));
 
     }
 

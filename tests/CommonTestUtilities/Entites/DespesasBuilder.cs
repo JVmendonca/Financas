@@ -36,6 +36,12 @@ public class DespesasBuilder
             .RuleFor(r => r.Data, faker => faker.Date.Past())
             .RuleFor(r => r.Valor, faker => faker.Random.Decimal(min: 1, max: 1000))
             .RuleFor(r => r.Pagamento, faker => faker.PickRandom<PaymentType>())
-            .RuleFor(r => r.UserId, _ => user.Id);
+            .RuleFor(r => r.UserId, _ => user.Id)
+            .RuleFor(r => r.Tags, faker => faker.Make(1, () => new Financas.Domain.Entidades.Tag
+            {
+                Id = 1,
+                Value = faker.PickRandom<Financas.Domain.Enums.Tag>(),
+                DespesaId = 1,
+            }));
     }
 }
