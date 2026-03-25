@@ -8,4 +8,6 @@ public class RequestDispesaJson
     public DateTime Data { get; set;}
     public decimal Valor { get; set; }
     public PaymentType Pagamento { get; set; }
+
+    public IList<Tag> Tags { get; set; } = [];
 }

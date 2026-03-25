@@ -2,15 +2,18 @@
 using Financas.Domain.Repositorios.Despesas;
 using Financas.Infrasctructure.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace Financas.Infrasctructure.DataAccess.Repositorios;
 internal class DispesasRepositorio : IDespesasReadOnlyRepositorio, IDespesasWriteOnlyRepositorio, IDespesasUpdateOnlyRepositorio
 {
     private readonly FinancasDbContexto _dbContext;
+
     public DispesasRepositorio(FinancasDbContexto dbContext)
     {
         _dbContext = dbContext;
     }
+
     public async Task add(Dispesa dispesa)
     { 
         _dbContext.Dispesas.Add(dispesa);
@@ -29,13 +32,14 @@ internal class DispesasRepositorio : IDespesasReadOnlyRepositorio, IDespesasWrit
 
     async Task<Dispesa?> IDespesasReadOnlyRepositorio.GetById(Domain.Entidades.User user, long id)
     {
-        return await _dbContext.Dispesas
+        return await GetFullDespesa()
             .AsNoTracking()
             .FirstOrDefaultAsync(despesa => despesa.Id == id && despesa.UserId == user.Id);
     }
     async Task<Dispesa?> IDespesasUpdateOnlyRepositorio.GetById(Domain.Entidades.User user,long id)
     {
-        return await _dbContext.Dispesas.FirstOrDefaultAsync(despesa => despesa.Id == id && despesa.UserId == user.Id);
+        return await GetFullDespesa()
+            .FirstOrDefaultAsync(despesa => despesa.Id == id && despesa.UserId == user.Id);
     }
 
     public void Update(Dispesa dispesa)
@@ -57,5 +61,11 @@ internal class DispesasRepositorio : IDespesasReadOnlyRepositorio, IDespesasWrit
             .OrderBy(d => d.Data)
             .ThenBy(d => d.Titulo)
             .ToListAsync();
+    }
+
+    private IIncludableQueryable<Dispesa, ICollection<Tag>> GetFullDespesa()
+    {
+        return _dbContext.Dispesas
+           .Include(despesa => despesa.Tags);
     }
 }

@@ -159,4 +159,7 @@
   <data name="EMAIL_JA_EM_USO" xml:space="preserve">
     <value>Esse Email ja está em uso</value>
   </data>
+  <data name="TAG_NAO_VALIDA" xml:space="preserve">
+    <value>Tag não suportada</value>
+  </data>
 </root>

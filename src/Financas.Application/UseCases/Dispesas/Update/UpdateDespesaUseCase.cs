@@ -36,6 +36,8 @@ public class UpdateDespesaUseCase : IUpdateDespesaUseCase
             throw new NotFoundExeption(ResourceErrorMassages.DESPESA_NAO_ENCONTRADA);
         }
         
+        despesa.Tags.Clear();
+
         _mapper.Map(request, despesa);
 
         _repositorio.Update(despesa);

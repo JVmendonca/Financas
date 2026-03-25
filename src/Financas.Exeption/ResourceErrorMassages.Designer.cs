@@ -160,6 +160,15 @@ namespace Financas.Exeption {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tag não suportada.
+        /// </summary>
+        public static string TAG_NAO_VALIDA {
+            get {
+                return ResourceManager.GetString("TAG_NAO_VALIDA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tipo De Pagamento Invalido.
         /// </summary>
         public static string TIPO_PAGAMENTO_INVALIDO {

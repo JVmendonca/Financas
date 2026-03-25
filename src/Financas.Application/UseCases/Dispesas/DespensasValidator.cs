@@ -12,5 +12,9 @@ public class DespensasValidator : AbstractValidator<RequestDispesaJson>
         RuleFor(Dispesas => Dispesas.Valor).GreaterThan(0).WithMessage(ResourceErrorMassages.VALOR_DEVE_SER_MAIOR_ZERO);
         RuleFor(Dispesas => Dispesas.Data).LessThanOrEqualTo(DateTime.UtcNow).WithMessage(ResourceErrorMassages.DATA_NAO_DEVE_SER_FUTURA);
         RuleFor(Dispesas => Dispesas.Pagamento).IsInEnum().WithMessage(ResourceErrorMassages.TIPO_PAGAMENTO_INVALIDO);
+        RuleFor(Dispesas => Dispesas.Tags).ForEach(rule =>
+        {
+            rule.IsInEnum().WithMessage(ResourceErrorMassages.TAG_NAO_VALIDA);
+        });
     }
 }
