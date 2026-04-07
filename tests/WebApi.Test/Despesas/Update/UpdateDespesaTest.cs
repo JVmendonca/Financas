@@ -1,5 +1,4 @@
 ﻿using CommonTestUtilities.Requests;
-using Financas.Communication.Responses;
 using Financas.Exeption;
 using FluentAssertions;
 using System.Globalization;
@@ -10,7 +9,7 @@ using WebApi.Test.InlineData;
 namespace WebApi.Test.Despesas.Update;
 public class UpdateDespesaTest : FinancasClassFixture
 {
-    private const string METHOD = "api/Dispesas";
+    private const string METHOD = "api/Despesas";
 
     private readonly string _token;
     private readonly long _despesaId;
@@ -24,7 +23,7 @@ public class UpdateDespesaTest : FinancasClassFixture
     [Fact]
     public async Task Success()
     {
-        var request = RequestDispesaJsonBuilder.Build();
+        var request = RequestDespesaJsonBuilder.Build();
 
         var result = await DoPut(requestUri: $"{METHOD}/{_despesaId}", request: request, token: _token);
 
@@ -36,7 +35,7 @@ public class UpdateDespesaTest : FinancasClassFixture
 
     public async Task Error_Title_Empty(string culture)
     {
-        var request = RequestDispesaJsonBuilder.Build();
+        var request = RequestDespesaJsonBuilder.Build();
         request.Titulo = string.Empty;
 
         var result = await DoPut(requestUri: $"{METHOD}/{_despesaId}", request: request, token: _token, culture: culture);
@@ -59,7 +58,7 @@ public class UpdateDespesaTest : FinancasClassFixture
 
     public async Task Error_Despesa_Not_Found(string culture)
     {
-        var request = RequestDispesaJsonBuilder.Build();
+        var request = RequestDespesaJsonBuilder.Build();
 
         var result = await DoPut(requestUri: $"{METHOD}/1000", request: request, token: _token, culture: culture);
         result.StatusCode.Should().Be(HttpStatusCode.NotFound);

@@ -3,11 +3,11 @@
 namespace WebApi.Test.Resorces;
 public class DespesasIndentifyManeger
 {
-    private readonly Dispesa _despesa;
+    private readonly Despesa _despesa;
 
-    public DespesasIndentifyManeger(Dispesa dispesa)
+    public DespesasIndentifyManeger(Despesa despesa)
     {
-        _despesa = dispesa;
+        _despesa = despesa;
     }
 
     public long GetId() => _despesa.Id;

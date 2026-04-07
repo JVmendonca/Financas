@@ -18,7 +18,7 @@ public class GenerateDespesasReportTest : FinancasClassFixture
         _despesaDate = wepApplicationFactory.Despesa_User_Admin.GetDate();
     }
 
-
+    
     [Fact]
     public async Task Success_pdf()
     {

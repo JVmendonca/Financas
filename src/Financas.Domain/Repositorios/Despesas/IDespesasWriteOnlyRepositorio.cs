@@ -3,7 +3,7 @@
 namespace Financas.Domain.Repositorios.Despesas;
 public interface IDespesasWriteOnlyRepositorio
 {
-    Task add(Dispesa dispesa);
+    Task Add(Despesa despesa);
     
     Task Delete(long id);
 }

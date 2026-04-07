@@ -1,0 +1,15 @@
+﻿using Financas.Domain.Enuns;
+
+namespace Financas.Domain.Entidades;
+public class Despesa
+{
+    public long Id { get; set; }
+    public string Titulo { get; set; } = string.Empty;
+    public string? Descricao { get; set; }
+    public DateTime Data { get; set; }
+    public decimal Valor { get; set; }
+    public PaymentType Pagamento { get; set; }
+    public ICollection<Tag> Tags { get; set; } = [];
+    public long UserId { get; set; }
+    public User User { get; set; } = default!;
+}

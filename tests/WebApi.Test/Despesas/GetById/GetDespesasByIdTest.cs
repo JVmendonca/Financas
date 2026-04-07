@@ -7,7 +7,7 @@ using System.Text.Json;
 namespace WebApi.Test.Despesas.GetById;
 public class GetDespesasByIdTest : FinancasClassFixture
 {
-    private const string METHOD = "api/Dispesas";
+    private const string METHOD = "api/Despesas";
 
     private readonly string _token;
     private readonly long _despesaId;
@@ -40,10 +40,5 @@ public class GetDespesasByIdTest : FinancasClassFixture
         Enum.IsDefined(typeof(PaymentType), paymantType).Should().BeTrue();
     }
 
-    //[Theory]
-    //[ClassData(typeof(CultureInlineDataTest))]
-    //public async Task Error_Not_Found()
-    //{
-
-    //}
+   
 }

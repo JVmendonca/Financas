@@ -8,7 +8,7 @@ using WebApi.Test.InlineData;
 namespace WebApi.Test.Despesas.Delete;
 public class DeleteDespesaTest : FinancasClassFixture
 {
-    private const string METHOD = "api/Dispesas";
+    private const string METHOD = "api/Despesas";
 
     private readonly string _token;
     private readonly long _despesaId;

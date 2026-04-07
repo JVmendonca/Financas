@@ -12,14 +12,14 @@ public class DespesasReadOnlyRepositorioBuilder
         _repository = new Mock<IDespesasReadOnlyRepositorio>();
     }
 
-    public DespesasReadOnlyRepositorioBuilder GetAll(User user, List<Dispesa> dispesas)
+    public DespesasReadOnlyRepositorioBuilder GetAll(User user, List<Despesa> despesas)
     {
-        _repository.Setup(repository => repository.GetAll(user)).ReturnsAsync(dispesas);
+        _repository.Setup(repository => repository.GetAll(user)).ReturnsAsync(despesas);
 
         return this;
     }
 
-    public DespesasReadOnlyRepositorioBuilder GetById(User user, Dispesa? despesa)
+    public DespesasReadOnlyRepositorioBuilder GetById(User user, Despesa? despesa)
     {
         if (despesa is not null)
             _repository.Setup(repository => repository.GetById(user, despesa.Id)).ReturnsAsync(despesa);
@@ -27,9 +27,9 @@ public class DespesasReadOnlyRepositorioBuilder
         return this;
     }
 
-    public DespesasReadOnlyRepositorioBuilder FilterByMonth(User user, List<Dispesa> dispesas)
+    public DespesasReadOnlyRepositorioBuilder FilterByMonth(User user, List<Despesa> despesas)
     {
-        _repository.Setup(repository => repository.FilterByMonth(user, It.IsAny<DateOnly>())).ReturnsAsync(dispesas);
+        _repository.Setup(repository => repository.FilterByMonth(user, It.IsAny<DateOnly>())).ReturnsAsync(despesas);
         return this;
     }
 

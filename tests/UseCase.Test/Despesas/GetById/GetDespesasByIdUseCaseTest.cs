@@ -2,7 +2,7 @@
 using CommonTestUtilities.LoggedUser;
 using CommonTestUtilities.Mapper;
 using CommonTestUtilities.Repositorios;
-using Financas.Application.UseCases.Dispesas.GetById;
+using Financas.Application.UseCases.Despesas.GetById;
 using Financas.Domain.Entidades;
 using Financas.Exeption;
 using Financas.Exeption.ExeptionBase;
@@ -45,7 +45,7 @@ public class GetDespesasByIdUseCaseTest
         result.Where(ex => ex.GetErros().Count == 1 && ex.GetErros().Contains(ResourceErrorMassages.DESPESA_NAO_ENCONTRADA));
     }
 
-    private GetDespesasByIdUseCases CreatUseCase(User user, Dispesa? despesa = null)
+    private GetDespesasByIdUseCases CreatUseCase(User user, Despesa? despesa = null)
     {
        var repository = new DespesasReadOnlyRepositorioBuilder().GetById(user, despesa).Build();
        var mapper = MapperBuilder.Build();

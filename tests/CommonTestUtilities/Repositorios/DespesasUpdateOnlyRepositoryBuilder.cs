@@ -12,10 +12,10 @@ public class DespesasUpdateOnlyRepositoryBuilder
         _repository = new Mock<IDespesasUpdateOnlyRepositorio>();
     }
 
-    public DespesasUpdateOnlyRepositoryBuilder GetById(User user, Dispesa? dispesa)
+    public DespesasUpdateOnlyRepositoryBuilder GetById(User user, Despesa? despesa)
     {
-        if (dispesa is not null)
-            _repository.Setup(r => r.GetById(user, dispesa.Id)).ReturnsAsync(dispesa);
+        if (despesa is not null)
+            _repository.Setup(r => r.GetById(user, despesa.Id)).ReturnsAsync(despesa);
 
         return this;
     }

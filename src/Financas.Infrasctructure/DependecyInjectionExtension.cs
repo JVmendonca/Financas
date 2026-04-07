@@ -42,9 +42,9 @@ public static class DependecyInjectionExtension
 
     private static void AddRepositorios(this IServiceCollection services)
     {
-        services.AddScoped<IDespesasReadOnlyRepositorio, DispesasRepositorio>();
-        services.AddScoped<IDespesasWriteOnlyRepositorio, DispesasRepositorio>();
-        services.AddScoped<IDespesasUpdateOnlyRepositorio, DispesasRepositorio>();
+        services.AddScoped<IDespesasReadOnlyRepositorio, DespesasRepositorio>();
+        services.AddScoped<IDespesasWriteOnlyRepositorio, DespesasRepositorio>();
+        services.AddScoped<IDespesasUpdateOnlyRepositorio, DespesasRepositorio>();
         services.AddScoped<IUserReadOnlyRepository, UserRepository>();
         services.AddScoped<IUserWriteOnlyRepository, UserRepository>(); 
         services.AddScoped<IUserUpdateOnlyRepository, UserRepository>();
@@ -53,7 +53,7 @@ public static class DependecyInjectionExtension
     private static void AddDbContext(this IServiceCollection services, IConfiguration configuration)
     {
         
-        var connectionString = configuration.GetConnectionString("conexaoBanco"); ;
+        var connectionString = configuration.GetConnectionString("conexaoBanco"); 
 
         var serverVersion = ServerVersion.AutoDetect(connectionString);
 

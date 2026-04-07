@@ -1,11 +1,11 @@
 ﻿using Financas.Application.AutoMapper;
-using Financas.Application.UseCases.Dispesas.Delete;
-using Financas.Application.UseCases.Dispesas.GetAll;
-using Financas.Application.UseCases.Dispesas.GetById;
-using Financas.Application.UseCases.Dispesas.Register;
-using Financas.Application.UseCases.Dispesas.Reports.Excel;
-using Financas.Application.UseCases.Dispesas.Reports.Pdf;
-using Financas.Application.UseCases.Dispesas.Update;
+using Financas.Application.UseCases.Despesas.Delete;
+using Financas.Application.UseCases.Despesas.GetAll;
+using Financas.Application.UseCases.Despesas.GetById;
+using Financas.Application.UseCases.Despesas.Register;
+using Financas.Application.UseCases.Despesas.Reports.Excel;
+using Financas.Application.UseCases.Despesas.Reports.Pdf;
+using Financas.Application.UseCases.Despesas.Update;
 using Financas.Application.UseCases.Login;
 using Financas.Application.UseCases.User.Delete;
 using Financas.Application.UseCases.User.Get;
@@ -31,7 +31,7 @@ public static class DependecyInjectionExtension
 
     private static void AddUseCases(IServiceCollection services)
     {
-        services.AddScoped<IRegisterDispensaUseCase, RegisterDispesasUseCase>();
+        services.AddScoped<IRegisterDespesaUseCase, RegisterDespesasUseCase>();
         services.AddScoped<IGetAllExpensesUseCase, GetAllExpensesUseCase>();
         services.AddScoped<IGetDespesasByIdUseCases, GetDespesasByIdUseCases>();
         services.AddScoped<IDeleteDespesaUseCase, DeleteDespesaUseCase>();

@@ -1,5 +1,5 @@
-﻿using Financas.Application.UseCases.Dispesas.Reports.Excel;
-using Financas.Application.UseCases.Dispesas.Reports.Pdf;
+﻿using Financas.Application.UseCases.Despesas.Reports.Excel;
+using Financas.Application.UseCases.Despesas.Reports.Pdf;
 using Financas.Domain.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -28,7 +28,7 @@ public class ReportController : ControllerBase
     }
 
 
-    [HttpGet("Pdf")]
+    [HttpGet("pdf")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> GetPdf(

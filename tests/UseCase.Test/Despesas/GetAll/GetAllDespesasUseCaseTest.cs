@@ -2,7 +2,7 @@
 using CommonTestUtilities.LoggedUser;
 using CommonTestUtilities.Mapper;
 using CommonTestUtilities.Repositorios;
-using Financas.Application.UseCases.Dispesas.GetAll;
+using Financas.Application.UseCases.Despesas.GetAll;
 using Financas.Domain.Entidades;
 using FluentAssertions;
 
@@ -28,9 +28,9 @@ public class GetAllDespesasUseCaseTest
         });
     }
 
-    private GetAllExpensesUseCase CreatUseCase(User user, List<Dispesa> dispesas)
+    private GetAllExpensesUseCase CreatUseCase(User user, List<Despesa> despesas)
     {
-        var repositorio = new DespesasReadOnlyRepositorioBuilder().GetAll(user, dispesas).Build();
+        var repositorio = new DespesasReadOnlyRepositorioBuilder().GetAll(user, despesas).Build();
         var mapper = MapperBuilder.Build();
         var loggedUser = LoggedUserBuilder.Build(user);
 

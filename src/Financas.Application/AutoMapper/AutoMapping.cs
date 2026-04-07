@@ -19,7 +19,7 @@ public class AutoMapping : Profile
             .ForMember(dest => dest.Senha, config => config.Ignore())              // será criptografada no use case
             .ForMember(dest => dest.UserIndetificador, config => config.Ignore()); // será gerado Guid no use case
 
-        CreateMap<RequestDispesaJson, Dispesa>()
+        CreateMap<RequestDespesaJson, Despesa>()
             .ForMember(dest => dest.Tags, config => config.MapFrom(src => src.Tags.Distinct()));
 
         CreateMap<Communication.Enuns.Tag, Tag>()
@@ -29,11 +29,11 @@ public class AutoMapping : Profile
 
     private void EntityToRequest()
     {
-        CreateMap<Dispesa, ResponseDespesaIdJson>()
+        CreateMap<Despesa, ResponseDespesaIdJson>()
             .ForMember(dest => dest.Tags, config => config.MapFrom(src => src.Tags.Select(tag => tag.Value)));
         
-        CreateMap<Dispesa, ResponseDespesaJson>();
-        CreateMap<Dispesa, ResponseShortExpenseJson>();
+        CreateMap<Despesa, ResponseDespesaJson>();
+        CreateMap<Despesa, ResponseShortExpenseJson>();
         CreateMap<User, ResponseUserProfileJson>();
 
         

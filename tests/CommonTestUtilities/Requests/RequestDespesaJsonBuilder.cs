@@ -1,0 +1,18 @@
+﻿using Bogus;
+using Financas.Communication.Enuns;
+using Financas.Communication.Request;
+
+namespace CommonTestUtilities.Requests;
+public class RequestDespesaJsonBuilder
+{
+    public static RequestDespesaJson Build()
+    {
+        return new Faker<RequestDespesaJson>()
+             .RuleFor(r => r.Titulo, f => f.Commerce.ProductName())
+             .RuleFor(r => r.Descricao, f => f.Commerce.ProductDescription())
+             .RuleFor(r => r.Data, f => f.Date.Past())
+             .RuleFor(r => r.Pagamento, f => f.PickRandom<PaymentType>())
+             .RuleFor(r => r.Valor, f => f.Random.Decimal(min: 1, max: 1000))
+            .RuleFor(r => r.Tags, f => f.Make(1, () => f.PickRandom<Tag>()));
+    }
+}

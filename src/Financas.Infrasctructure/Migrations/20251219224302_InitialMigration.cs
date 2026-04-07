@@ -38,7 +38,7 @@ namespace Financas.Infrasctructure.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Dispesas",
+                name: "Despesas",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -54,9 +54,9 @@ namespace Financas.Infrasctructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Dispesas", x => x.Id);
+                    table.PrimaryKey("PK_Despesas", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Dispesas_User_UserId",
+                        name: "FK_Despesas_User_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -65,8 +65,8 @@ namespace Financas.Infrasctructure.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Dispesas_UserId",
-                table: "Dispesas",
+                name: "IX_Despesas_UserId",
+                table: "Despesas",
                 column: "UserId");
         }
 
@@ -74,7 +74,7 @@ namespace Financas.Infrasctructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Dispesas");
+                name: "Despesas");
 
             migrationBuilder.DropTable(
                 name: "Users");

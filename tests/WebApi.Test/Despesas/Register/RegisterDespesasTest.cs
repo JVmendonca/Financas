@@ -9,7 +9,7 @@ using WebApi.Test.InlineData;
 namespace WebApi.Test.Despesas.Register;
 public class RegisterDespesasTest : FinancasClassFixture
 {
-    private const string METHOD = "api/Dispesas";
+    private const string METHOD = "api/Despesas";
 
     private readonly string _token;
 
@@ -21,7 +21,7 @@ public class RegisterDespesasTest : FinancasClassFixture
     [Fact]
     public async Task Success()
     {
-        var request = RequestDispesaJsonBuilder.Build();
+        var request = RequestDespesaJsonBuilder.Build();
 
 
         var result = await DoPost(requestUri: METHOD, request: request, token: _token);
@@ -39,7 +39,7 @@ public class RegisterDespesasTest : FinancasClassFixture
     [ClassData(typeof(CultureInlineDataTest))]
     public async Task Error_Title_Empty(string culture)
     {
-        var request = RequestDispesaJsonBuilder.Build();
+        var request = RequestDespesaJsonBuilder.Build();
         request.Titulo = string.Empty;
 
         var result = await DoPost(requestUri: METHOD, request: request, token: _token, culture: culture);

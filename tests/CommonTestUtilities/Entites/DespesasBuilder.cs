@@ -7,9 +7,9 @@ using Financas.Domain.Enuns;
 namespace CommonTestUtilities.Entites;
 public class DespesasBuilder
 {
-    public static List<Dispesa> Collection(User user, uint cout = 2)
+    public static List<Despesa> Collection(User user, uint cout = 2)
     {
-        var list = new List<Dispesa>();
+        var list = new List<Despesa>();
         
         if (cout == 0)
             cout = 1;
@@ -27,9 +27,9 @@ public class DespesasBuilder
         return list;
     }
 
-    public static Dispesa Build(User user)
+    public static Despesa Build(User user)
     {
-        return new Faker<Dispesa>()
+        return new Faker<Despesa>()
             .RuleFor(u => u.Id, _ => 1)
             .RuleFor(u => u.Titulo, faker => faker.Commerce.ProductName())
             .RuleFor(r => r.Descricao, faker => faker.Commerce.ProductDescription())

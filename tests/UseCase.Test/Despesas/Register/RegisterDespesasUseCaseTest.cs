@@ -3,8 +3,7 @@ using CommonTestUtilities.LoggedUser;
 using CommonTestUtilities.Mapper;
 using CommonTestUtilities.Repositorios;
 using CommonTestUtilities.Requests;
-using Financas.Application.UseCases.Dispesas.Register;
-using Financas.Domain.Repositorios.Despesas;
+using Financas.Application.UseCases.Despesas.Register;
 using Financas.Exeption;
 using Financas.Exeption.ExeptionBase;
 using FluentAssertions;
@@ -16,7 +15,7 @@ public class RegisterDespesasUseCaseTest
     public async Task Success() 
     {
         var loggedUser = UserBuild.Build();
-        var request = RequestDispesaJsonBuilder.Build();
+        var request = RequestDespesaJsonBuilder.Build();
         var userCase = CreatUseCase(loggedUser);
 
         var result = await userCase.Execute(request);
@@ -30,7 +29,7 @@ public class RegisterDespesasUseCaseTest
     {
         var loggedUser = UserBuild.Build();
 
-        var request = RequestDispesaJsonBuilder.Build();
+        var request = RequestDespesaJsonBuilder.Build();
         request.Titulo = string.Empty;
 
         var userCase = CreatUseCase(loggedUser);
@@ -42,14 +41,14 @@ public class RegisterDespesasUseCaseTest
         result.Where(ex => ex.GetErros().Count == 1 && ex.GetErros().Contains(ResourceErrorMassages.TITULO_OBRIGATORIO));
     }
 
-    private RegisterDispesasUseCase CreatUseCase(Financas.Domain.Entidades.User user)
+    private RegisterDespesasUseCase CreatUseCase(Financas.Domain.Entidades.User user)
     {
         var repository = DespesasWriteOnlyRepositorioBuilder.Build();
         var mapper = MapperBuilder.Build();
         var unitOfWork = UnitOfWorkBuilder.Build();
         var loggeUser = LoggedUserBuilder.Build(user);
         
-        return new RegisterDispesasUseCase(repository, unitOfWork,mapper,loggeUser);
+        return new RegisterDespesasUseCase(repository, unitOfWork,mapper,loggeUser);
     }
 
 }

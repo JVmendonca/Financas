@@ -4,7 +4,7 @@ using System.Text.Json;
 namespace WebApi.Test.Despesas.GetAll;
 public class GetAllDespesasTest : FinancasClassFixture 
 {
-    private const string METHOD = "api/Dispesas";
+    private const string METHOD = "api/Despesas";
 
     private readonly string _token;
 

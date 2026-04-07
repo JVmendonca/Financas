@@ -27,8 +27,6 @@ public class LoggedUser : ILoggedUser
 
         var indetifier = jwtSecurityToken.Claims.First(claim => claim.Type == ClaimTypes.Sid).Value;
 
-
-
         return await _dbcontext
             .Users
             .AsNoTracking()

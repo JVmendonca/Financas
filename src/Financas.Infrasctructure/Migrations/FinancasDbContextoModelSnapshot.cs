@@ -22,7 +22,7 @@ namespace Financas.Infrasctructure.Migrations
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
-            modelBuilder.Entity("Financas.Domain.Entidades.Dispesa", b =>
+            modelBuilder.Entity("Financas.Domain.Entidades.Despesa", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -53,7 +53,7 @@ namespace Financas.Infrasctructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Dispesas");
+                    b.ToTable("Despesas");
                 });
 
             modelBuilder.Entity("Financas.Domain.Entidades.Tag", b =>
@@ -70,12 +70,12 @@ namespace Financas.Infrasctructure.Migrations
                     b.Property<int>("Value")
                         .HasColumnType("int");
 
-                    b.Property<long>("dispesaId")
+                    b.Property<long>("despesaId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("dispesaId");
+                    b.HasIndex("despesaId");
 
                     b.ToTable("Tags", (string)null);
                 });
@@ -112,7 +112,7 @@ namespace Financas.Infrasctructure.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Financas.Domain.Entidades.Dispesa", b =>
+            modelBuilder.Entity("Financas.Domain.Entidades.Despesa", b =>
                 {
                     b.HasOne("Financas.Domain.Entidades.User", "User")
                         .WithMany()
@@ -125,16 +125,16 @@ namespace Financas.Infrasctructure.Migrations
 
             modelBuilder.Entity("Financas.Domain.Entidades.Tag", b =>
                 {
-                    b.HasOne("Financas.Domain.Entidades.Dispesa", "dispesa")
+                    b.HasOne("Financas.Domain.Entidades.Despesa", "despesa")
                         .WithMany("Tags")
-                        .HasForeignKey("dispesaId")
+                        .HasForeignKey("despesaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("dispesa");
+                    b.Navigation("despesa");
                 });
 
-            modelBuilder.Entity("Financas.Domain.Entidades.Dispesa", b =>
+            modelBuilder.Entity("Financas.Domain.Entidades.Despesa", b =>
                 {
                     b.Navigation("Tags");
                 });

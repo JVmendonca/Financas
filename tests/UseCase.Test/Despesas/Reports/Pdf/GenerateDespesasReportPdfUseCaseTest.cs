@@ -1,7 +1,7 @@
 ﻿using CommonTestUtilities.Entites;
 using CommonTestUtilities.LoggedUser;
 using CommonTestUtilities.Repositorios;
-using Financas.Application.UseCases.Dispesas.Reports.Excel;
+using Financas.Application.UseCases.Despesas.Reports.Excel;
 using Financas.Domain.Entidades;
 using FluentAssertions;
 
@@ -25,16 +25,16 @@ public class GenerateDespesasReportPdfUseCaseTest
     {
         var loggedUser = UserBuild.Build();
 
-        var useCase = CreateUseCase(loggedUser, new List<Dispesa>());
+        var useCase = CreateUseCase(loggedUser, new List<Despesa>());
 
         var result = await useCase.Execute(DateOnly.FromDateTime(DateTime.Today));
 
         result.Should().NotBeNullOrEmpty();
     }
 
-    private GenereteDespesaReportExcelUseCase CreateUseCase(User user, List<Dispesa> dispesas)
+    private GenereteDespesaReportExcelUseCase CreateUseCase(User user, List<Despesa> despesas)
     {
-        var repository = new DespesasReadOnlyRepositorioBuilder().FilterByMonth(user, dispesas).Build();
+        var repository = new DespesasReadOnlyRepositorioBuilder().FilterByMonth(user, despesas).Build();
         var loggedUser = LoggedUserBuilder.Build(user);
 
         return new GenereteDespesaReportExcelUseCase(repository, loggedUser);

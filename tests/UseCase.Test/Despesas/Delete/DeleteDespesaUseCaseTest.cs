@@ -1,7 +1,7 @@
 ﻿using CommonTestUtilities.Entites;
 using CommonTestUtilities.LoggedUser;
 using CommonTestUtilities.Repositorios;
-using Financas.Application.UseCases.Dispesas.Delete;
+using Financas.Application.UseCases.Despesas.Delete;
 using Financas.Domain.Entidades;
 using Financas.Exeption;
 using Financas.Exeption.ExeptionBase;
@@ -36,7 +36,7 @@ public class DeleteDespesaUseCaseTest
         result.Where(ex => ex.GetErros().Count == 1 && ex.GetErros().Contains(ResourceErrorMassages.DESPESA_NAO_ENCONTRADA));
     }
 
-    private DeleteDespesaUseCase CreateUseCase(User user, Dispesa dispesa = null)
+    private DeleteDespesaUseCase CreateUseCase(User user, Despesa dispesa = null)
     {
         var repositoryWriteOnly = DespesasWriteOnlyRepositorioBuilder.Build();
         var repository = new DespesasReadOnlyRepositorioBuilder().GetById(user, dispesa).Build();

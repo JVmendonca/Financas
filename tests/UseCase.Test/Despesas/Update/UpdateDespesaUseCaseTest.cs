@@ -3,7 +3,7 @@ using CommonTestUtilities.LoggedUser;
 using CommonTestUtilities.Mapper;
 using CommonTestUtilities.Repositorios;
 using CommonTestUtilities.Requests;
-using Financas.Application.UseCases.Dispesas.Update;
+using Financas.Application.UseCases.Despesas.Update;
 using Financas.Domain.Entidades;
 using Financas.Exeption;
 using Financas.Exeption.ExeptionBase;
@@ -16,7 +16,7 @@ public class UpdateDespesaUseCaseTest
     public async Task Success()
     {
         var loggedUser = UserBuild.Build();
-        var request = RequestDispesaJsonBuilder.Build();
+        var request = RequestDespesaJsonBuilder.Build();
         var despesa = DespesasBuilder.Build(loggedUser);
 
         var useCase = CreatUseCase(loggedUser, despesa);
@@ -38,7 +38,7 @@ public class UpdateDespesaUseCaseTest
         var loggedUser = UserBuild.Build();
         var despesa = DespesasBuilder.Build(loggedUser);
 
-        var request = RequestDispesaJsonBuilder.Build();
+        var request = RequestDespesaJsonBuilder.Build();
         request.Titulo = string.Empty;
 
         var useCase = CreatUseCase(loggedUser, despesa);
@@ -54,7 +54,7 @@ public class UpdateDespesaUseCaseTest
     {
         var loggedUser = UserBuild.Build();
 
-        var request = RequestDispesaJsonBuilder.Build();
+        var request = RequestDespesaJsonBuilder.Build();
 
         var useCase = CreatUseCase(loggedUser); 
 
@@ -69,9 +69,9 @@ public class UpdateDespesaUseCaseTest
 
     }
 
-    private UpdateDespesaUseCase CreatUseCase(User user, Dispesa? dispesa = null)
+    private UpdateDespesaUseCase CreatUseCase(User user, Despesa? despesa = null)
     {
-        var repository = new DespesasUpdateOnlyRepositoryBuilder().GetById(user, dispesa).Build();
+        var repository = new DespesasUpdateOnlyRepositoryBuilder().GetById(user, despesa).Build();
         var mapper = MapperBuilder.Build();
         var unitOfWork = UnitOfWorkBuilder.Build();
         var loggdUser = LoggedUserBuilder.Build(user);

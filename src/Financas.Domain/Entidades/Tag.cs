@@ -7,5 +7,5 @@ public class Tag
 
     public long DespesaId { get; set; }
 
-    public Dispesa dispesa { get; set; } = default!;
+    public Despesa Despesa { get; set; } = default!;
 }

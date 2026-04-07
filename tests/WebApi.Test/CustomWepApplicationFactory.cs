@@ -102,7 +102,7 @@ public class CustomWepApplicationFactory : WebApplicationFactory<Program>
         return user;
 
     }
-    private Dispesa AddDespesas(FinancasDbContexto dbContexto, User user, long despesaId, long tagId)
+    private Despesa AddDespesas(FinancasDbContexto dbContexto, User user, long despesaId, long tagId)
     {
         var despesa = DespesasBuilder.Build(user);
         despesa.Id = despesaId;
@@ -113,7 +113,7 @@ public class CustomWepApplicationFactory : WebApplicationFactory<Program>
             tag.DespesaId = despesaId;
         }
 
-        dbContexto.Dispesas.Add(despesa);
+        dbContexto.Despesas.Add(despesa);
 
         return despesa;
     }
