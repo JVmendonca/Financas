@@ -70,7 +70,7 @@ namespace Financas.Exeption {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Despesa Não Encontrada.
+        ///   Looks up a localized string similar to Despesa Não Encontrada .
         /// </summary>
         public static string DESPESA_NAO_ENCONTRADA {
             get {
@@ -79,7 +79,7 @@ namespace Financas.Exeption {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ó  email é invalido.
+        ///   Looks up a localized string similar to ó  email é invalido ❌.
         /// </summary>
         public static string EMAIL_INVALIDO {
             get {

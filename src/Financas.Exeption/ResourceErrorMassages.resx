@@ -133,7 +133,7 @@
     <value>erro desconhecido</value>
   </data>
   <data name="DESPESA_NAO_ENCONTRADA" xml:space="preserve">
-    <value>Despesa Não Encontrada</value>
+    <value>Despesa Não Encontrada </value>
   </data>
   <data name="NOME_VAZIO" xml:space="preserve">
     <value>O nome não pode está vazio</value>
@@ -142,7 +142,7 @@
     <value>O Email nao pode está vazio</value>
   </data>
   <data name="EMAIL_INVALIDO" xml:space="preserve">
-    <value>ó  email é invalido</value>
+    <value>ó  email é invalido ❌</value>
   </data>
   <data name="SENHA_INVALIDA" xml:space="preserve">
     <value>Sua senha deve ter no minimo 8 caracteres,contendo uma letra maiscula uma minuscula um numero e um caractere especial</value>
