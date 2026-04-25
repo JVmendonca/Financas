@@ -10,6 +10,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Financas.Infrasctructure.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -76,7 +79,19 @@ builder.Services.AddAuthentication(config =>
     };
 });
 
+builder.Services.AddHealthChecks().AddDbContextCheck<FinancasDbContexto>();
+
 var app = builder.Build();
+
+app.MapHealthChecks("/Health", new HealthCheckOptions
+{
+    AllowCachingResponses = false,
+    ResultStatusCodes =
+    {
+        [HealthStatus.Healthy] = StatusCodes.Status200OK,
+        [HealthStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable
+    }
+});
 
 if (app.Environment.IsDevelopment())
 {
