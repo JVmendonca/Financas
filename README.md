@@ -14,7 +14,7 @@
 
 Este projeto foi desenvolvido com foco em boas práticas de desenvolvimento backend, utilizando conceitos como arquitetura em camadas e princípios de **Domain-Driven Design (DDD)**.
 
-A API permite o cadastro de usuários, **autenticação** e **gerenciamento** de **Despesas**, possibilitando **registrar**, **ver**, **atulizar** e **deletar** o usuario ou a despesa criada
+A API permite o cadastro de usuários, **autenticação** e **gerenciamento** de **Despesas**, possibilitando **registrar**, **ver**, **atulizar** e **deletar** o usuario ou a despesas criadas
 
 Além disso, a aplicação conta com documentação interativa via Swagger, facilitando o teste e a integração dos endpoints.
 
